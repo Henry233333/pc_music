@@ -1,0 +1,139 @@
+
+body{
+    background-color: black;
+}
+.input_slider_box {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    justify-content: center;
+    background: linear-gradient(#566277, #47494e);
+    opacity: 0.9;
+    width: 150px;
+    height: 500px;
+    border: none;
+    border-radius: 15px;
+    margin-right: 30px;
+}
+
+.slider_box_left {
+    box-sizing: border-box;
+    padding: 0;
+    height: 400px;
+    width: 50px;
+    margin-left: 20px;
+    text-align: center;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.slider_box_right {
+    height: 400px;
+    width: 50px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.input_color_box {
+    width: 150px;
+    height: 500px;
+    border: none;
+    margin-right: 30px;
+
+}
+.color_box{
+    height: 100%;
+    width: 5px;
+    background-color: white;
+    margin-left: 120px;
+    transform: rotate(180deg);
+}
+.color_bar{
+    height: 100%;
+    width: 100%;
+    background: -ms-linear-gradient(bottom, #ff3600, #fff404,#72ff00);
+
+}
+.slider_box_bottom {
+    width: 100%;
+    text-align: center;
+}
+
+.slider_box_bottom > input {
+    width: 70%;
+    text-align: center;
+    background-color: white;
+    border: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul > li {
+    color: white;
+    text-align: right;
+}
+ul > li:first-child {
+    margin-top: 0px;
+}
+input[type="checkbox"] {
+    display: none;
+}
+input[type="checkbox"] + label {
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    position: relative;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    margin: 0px 20px;
+    box-sizing: border-box;
+}
+input[type="checkbox"] + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.Gain_button {
+    width: 50%;
+    height: 24px;
+    margin-top: 18px;
+    border-radius: 15px;
+    border: none;
+}
+.check_style:checked + label.green {
+    background: rgb(38, 128, 255);
+}
+
+.check_style:checked + label.green:after {
+    background: #ffffff;
+}
+
+.check_style:checked + label:after {
+    left: calc(100% - 20px);
+}
+
+.check_style + label {
+    background: #ddd;
+    border-radius: 20px;
+    box-shadow: 1px 1px 3px #aaa;
+}
+
+.check_style + label:after {
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 1px 1px 3px #aaa;
+}
+label {
+    color: white;
+}

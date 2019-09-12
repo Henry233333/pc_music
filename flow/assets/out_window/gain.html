@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="description" content="Support selecting ports within nodes."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap-slider.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-slider.css">
+    <link rel="stylesheet" href="css/sliders.css"/>
+    <style>
+        .out_gain_main{
+            padding-left: 200px;
+            padding-top: 100px;
+            display: flex;
+            flex-direction: row;
+        }
+        .out_gain_slider3_ul > li {
+            margin-top: 43%;
+        }
+        #out_gain_enable:checked + label.green {
+            background: rgb(38, 128, 255);
+        }
+
+        #out_gain_enable:checked + label.green:after {
+            background: #ffffff;
+        }
+
+        #out_gain_enable:checked + label:after {
+            left: calc(100% - 20px);
+        }
+
+        #out_gain_enable + label {
+            background: #ddd;
+            border-radius: 20px;
+            box-shadow: 1px 1px 3px #aaa;
+        }
+
+        #out_gain_enable + label:after {
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 1px 1px 3px #aaa;
+        }
+        label{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="out_gain_main">
+        <div>
+            <span style="height: 30px;">
+                <label class="input_label" style="margin-left: 30px">Gain</label>&nbsp;&nbsp;
+                <label class="input_label">off</label>
+                <input type="checkbox" id="out_gain_enable">
+                <label for="out_gain_enable" class="green"></label>
+                <label class="input_label">on</label>
+            </span>
+        </div>
+        <div class="input_slider_box" style="margin-left: 100px">
+            <div style="width: 100px;height: 40px;text-align: center">
+                <button class="Gain_button">Mute</button>
+            </div>
+            <div class="slider_box_left" style="height: 360px">
+                <ul class="out_gain_slider3_ul">
+                    <li>24&nbsp;&nbsp;&nbsp;-</li>
+                    <li>20&nbsp;&nbsp;&nbsp;-</li>
+                    <li>10&nbsp;&nbsp;&nbsp;-</li>
+                    <li>0&nbsp;&nbsp;&nbsp;-</li>
+                    <li>-10&nbsp;&nbsp;&nbsp;-</li>
+                    <li>-20&nbsp;&nbsp;&nbsp;-</li>
+                    <li>-30&nbsp;&nbsp;&nbsp;-</li>
+                    <li>-40&nbsp;&nbsp;&nbsp;-</li>
+                    <li>-50&nbsp;&nbsp;&nbsp;-</li>
+                    <li>-60&nbsp;&nbsp;&nbsp;-</li>
+                </ul>
+            </div>
+            <div class="slider_box_right" style="height: 360px">
+                <input id="out_gain_slider3" type="hidden" onchange="getVal(this)"/>
+            </div>
+            <div class="slider_box_bottom">
+                <label style="color: white">dB</label><br>
+                <input type="number" value="-60" id="out_gain_slider_num"><br>
+                <label style="color: #00b8ef">Gain</label>
+            </div>
+        </div>
+    </div>
+<script>
+    var ticks3 = [-60, -50, -40, -30, -20, -10, 0, 10, 20, 24];
+    var d3 = 100 / 9;
+    var ticks_positions3 = [0, d3, d3 * 2, d3 * 3, d3 * 4, d3 * 5, d3 * 6, d3 * 7, d3 * 8, d3 * 9, 100];
+    var value3 = -60;
+    var slider2 = create_slider("#out_gain_slider3",ticks3,ticks_positions3,value3);
+
+    function getVal(e) {
+        $(e).parents(".slider_box_right").siblings(".slider_box_bottom").children("input").val(e.value);
+        console.log(e.value);
+    }
+    function create_slider(id,ticks,ticks_positions,value) {
+       return  new Slider(id, {
+            ticks: ticks,
+            ticks_positions: ticks_positions,
+            formatter: function () {
+                return '';
+            },
+            value: value,
+            step: 0.1,
+            orientation: 'vertical',
+            reversed: true,
+        });
+    }
+    $(function () {
+        $("#out_gain_slider_num").change(function () {
+            slider2.setValue(this.value);
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="description" content="Support selecting ports within nodes."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap-slider.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-slider.css">
+    <link rel="stylesheet" href="css/sliders.css"/>
+    <style>
+        .out_limiter_main{
+            padding-left: 300px;
+            padding-top: 50px;
+        }
+        .output_slider2_ul > li {
+            margin-top: 63%;
+        }
+        .output_slider4_ul > li {
+            margin-top: 43%;
+        }
+
+        .output_slider6_ul > li {
+            margin-top: 77%;
+        }
+    </style>
+</head>
+<body>
+    <div class="out_limiter_main">
+        <div class="right">
+            <span style="height: 30px;position: relative;left: 150px">
+                <label class="input_label">off</label>
+                <input type="checkbox" class="check_style" id="Limiter">
+                <label for="Limiter" class="green"></label>
+                <label class="input_label">on</label>
+                <label class="input_label" style="margin-left: 30px">Limiter</label>
+            </span>
+            <div style="display: flex;flex-direction: row;margin-top: 20px">
+                <div class="input_color_box" style="width: 120px;margin-right: 10px;">
+                    <div class="color_box" style="margin-left: 80px">
+                        <div class="color_bar" ></div>
+                    </div>
+                </div>
+                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
+                    <div class="slider_box_left" style="width: 50px">
+                        <ul class="output_slider4_ul">
+                            <li>100&nbsp;-</li>
+                            <li>90&nbsp;&nbsp;&nbsp;-</li>
+                            <li>80&nbsp;&nbsp;&nbsp;-</li>
+                            <li>70&nbsp;&nbsp;&nbsp;-</li>
+                            <li>60&nbsp;&nbsp;&nbsp;-</li>
+                            <li>50&nbsp;&nbsp;&nbsp;-</li>
+                            <li>40&nbsp;&nbsp;&nbsp;-</li>
+                            <li>30&nbsp;&nbsp;&nbsp;-</li>
+                            <li>20&nbsp;&nbsp;&nbsp;-</li>
+                            <li>10&nbsp;&nbsp;&nbsp;-</li>
+                            <li>0&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right" style="width: 40px;">
+                        <input id="out_limiter_slider1" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">ms</label><br>
+                        <input type="number" value="0" id="out_limiter_slider1_num" onchange="setVal(this)"><br>
+                        <label style="color: #00b8ef">Attack</label>
+                    </div>
+                </div>
+                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
+                    <div class="slider_box_left" style="width: 50px">
+                        <ul class="output_slider2_ul">
+                            <li>5000&nbsp;&nbsp;&nbsp;-</li>
+                            <li>4000&nbsp;&nbsp;&nbsp;-</li>
+                            <li>3000&nbsp;&nbsp;&nbsp;-</li>
+                            <li>2000&nbsp;&nbsp;&nbsp;-</li>
+                            <li>1000&nbsp;&nbsp;&nbsp;-</li>
+                            <li>500&nbsp;&nbsp;&nbsp;-</li>
+                            <li>100&nbsp;&nbsp;&nbsp;-</li>
+                            <li>50&nbsp;&nbsp;&nbsp;-</li>
+                            <li>10&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right" style="width: 40px;">
+                        <input id="out_limiter_slider2" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">ms</label><br>
+                        <input type="number" value="10" id="out_limiter_slider2_num" onchange="setVal(this)"><br>
+                        <label style="color: #00b8ef">Release</label>
+                    </div>
+                </div>
+                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
+                    <div class="slider_box_left" style="width: 50px">
+                        <ul class="output_slider6_ul">
+                            <li>0&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-6&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-20&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-30&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-40&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-50&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-60&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-70&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right" style="width: 40px;">
+                        <input id="out_limiter_slider3" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">dB</label><br>
+                        <input type="number" value="-70" id="out_limiter_slider3_num" onchange="setVal(this)"><br>
+                        <label style="color: #00b8ef">Threshol</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var ticks1 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+        var ticks_positions1 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+        var value1 = 0;
+
+        var ticks2 = [10, 50, 100, 500, 1000, 2000, 3000, 4000, 5000];
+        var ticks_positions2 = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
+        var value2 = -10;
+
+        var slider1 = create_slider("#out_limiter_slider1", ticks1, ticks_positions1, value1);
+
+        var slider2 = create_slider("#out_limiter_slider2", ticks2, ticks_positions2, value2);
+
+        var ticks6 = [-70, -60, -50, -40, -30, -20, -6, 0];
+        var d6 = 100 / 7;
+        var ticks_positions6 = [0, d6, d6 * 2, d6 * 3, d6 * 4, d6 * 5, d6 * 6, 100];
+        var value6 = -70;
+        var slider3 = create_slider("#out_limiter_slider3", ticks6, ticks_positions6, value6);
+
+        function setVal(e) {
+            var id = $(e).attr('id');
+            if(id=="out_limiter_slider1_num"){slider1.setValue(e.value)}
+            else if(id=="out_limiter_slider2_num"){slider2.setValue(e.value)}
+            else if(id=="out_limiter_slider3_num"){slider3.setValue(e.value)}
+        }
+
+        function getVal(e) {
+            $(e).parents(".slider_box_right").siblings(".slider_box_bottom").children("input").val(e.value);
+        }
+
+        $(function () {
+            setInterval(function () {
+                var s = Math.floor(Math.random() * 100);
+                $(".color_bar").css({"height": s + "%"});
+            }, 500);
+        });
+
+        function create_slider(id, ticks, ticks_positions, value) {
+           return  new Slider(id, {
+                ticks: ticks,
+                ticks_positions: ticks_positions,
+                formatter: function () {
+                    return '';
+                },
+                value: value,
+                step: 0.1,
+                orientation: 'vertical',
+                reversed: true,
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="description" content="Support selecting ports within nodes."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap-slider.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-slider.css">
+    <link rel="stylesheet" href="css/sliders.css"/>
+    <style>
+        .out_ldeq_main {
+            padding-top: 50px;
+            padding-left: 200px;
+        }
+
+        .out_noise_slider4_ul > li {
+            margin-top: 30%;
+        }
+
+        .right {
+            display: flex;
+            flex-direction: row;
+        }
+        #ldeq_select1{
+            width: 100px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+<div class="out_ldeq_main">
+    <div class="right">
+        <div style="width: 300px">
+                <span style="height: 30px;position: relative;top: 100px">
+                <label class="input_label" style="margin-left: 30px">LDEQ</label><br><br>
+                <label class="input_label">off</label>
+                <input type="checkbox" class="check_style" id="ldeq">
+                <label for="ldeq" class="green"></label>
+                <label class="input_label">on</label>
+                <br><br>
+                <label class="input_label" style="margin-left: 30px">Name</label><br><br>
+                <select id="ldeq_select1">
+                    <option value="name1" selected>name1</option>
+                    <option value="name2">name2</option>
+                </select>
+                </span>
+        </div>
+        <div class="input_slider_box" style="width: 120px;">
+            <div class="slider_box_left" style="width: 50px">
+                <ul class="out_noise_slider4_ul">
+                    <li>12&nbsp;&nbsp;&nbsp;-</li>
+                    <li>11&nbsp;&nbsp;&nbsp;-</li>
+                    <li>10&nbsp;&nbsp;&nbsp;-</li>
+                    <li>9&nbsp;&nbsp;&nbsp;-</li>
+                    <li>8&nbsp;&nbsp;&nbsp;-</li>
+                    <li>7&nbsp;&nbsp;&nbsp;-</li>
+                    <li>6&nbsp;&nbsp;&nbsp;-</li>
+                    <li>5&nbsp;&nbsp;&nbsp;-</li>
+                    <li>4&nbsp;&nbsp;&nbsp;-</li>
+                    <li>3&nbsp;&nbsp;&nbsp;-</li>
+                    <li>2&nbsp;&nbsp;&nbsp;-</li>
+                    <li>1&nbsp;&nbsp;&nbsp;-</li>
+                    <li>0&nbsp;&nbsp;&nbsp;-</li>
+                </ul>
+            </div>
+            <div class="slider_box_right" style="width: 40px;">
+                <input id="out_ldeq_slider1" type="hidden" onchange="getVal(this)"/>
+            </div>
+            <div class="slider_box_bottom">
+                <label style="color: white">s</label><br>
+                <input type="number" value="0" id="out_ldeq_slider1_num" onchange="setVal(this)"><br>
+                <label style="color: #00b8ef">Average</label>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var ticks4 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    var d4 = 100 / 12;
+    var ticks_positions4 = [0, d4, d4 * 2, d4 * 3, d4 * 4, d4 * 5, d4 * 6, d4 * 7, d4 * 8, d4 * 9, d4 * 10, d4 * 11, 100];
+    var value4 = 0;
+    var slider1 = create_slider("#out_ldeq_slider1", ticks4, ticks_positions4, value4);
+
+    function getVal(e) {
+        $(e).parents(".slider_box_right").siblings(".slider_box_bottom").children("input").val(e.value);
+    }
+    function setVal(e) {
+        var id = $(e).attr('id');
+        if(id=="out_ldeq_slider1_num"){slider1.setValue(e.value)}
+    }
+    function create_slider(id, ticks, ticks_positions, value) {
+       return  new Slider(id, {
+            ticks: ticks,
+            ticks_positions: ticks_positions,
+            formatter: function () {
+                return '';
+            },
+            value: value,
+            step: 0.1,
+            orientation: 'vertical',
+            reversed: true,
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eq</title>
+    <meta name="description" content="Support selecting ports within nodes."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap-slider.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-slider.css">
+    <link rel="stylesheet" href="css/sliders.css"/>
+    <script src="peq_draw.js"></script>
+    <style>
+        .out_eq_main {
+            display: flex;
+            flex-direction: row;
+            padding-top: 20px;
+            padding-left: 30px;
+            width: 100%;
+        }
+
+        #eq_canvas {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            z-index: 1;
+            width: 1000px;
+            height: 480px;
+            overflow: hidden;
+        }
+
+        .left {
+            width: 400px;
+            height: 600px;
+
+        }
+        .output_slider4_ul > li {
+            margin-top: 162%;
+        }
+
+        .output_slider2_ul > li {
+            margin-top: 162%;
+        }
+        .output_slider6_ul > li {
+            margin-top: 162%;
+        }
+        #bg_canvas{
+            position: absolute;
+            z-index: -2;
+            width: 1000px;
+            height: 480px;
+            top: 50px;
+            left: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.49);
+            background-color: #2b2b2b;
+        }
+        #move_canvas{
+            position: absolute;
+            z-index: 4;
+            width: 1000px;
+            height: 480px;
+            top: 50px;
+            left: 50px;
+
+        }
+        .eq_item{
+            width:25px;
+            height:25px;
+            background-color:white;
+            position:absolute;
+            border: none;
+            top:50%;
+            left:2%;
+            transform:translateX(-50%) translateY(-50%);
+            -ms-transform:translateX(-50%) translateY(-50%);
+            border-radius:50px;
+            box-shadow:0px 0px 10px 5px blue;
+            text-align: center;
+            line-height: 25px;
+        }
+        .canvas_main{
+            width: 1100px;
+            overflow: hidden;
+            position: absolute;
+            height: 800px;
+            left:400px;
+
+        }
+    </style>
+
+</head>
+<body>
+<div class="out_eq_main">
+
+    <div class="left">
+        <div style="width: 400px">
+            <span style="height: 30px;position: relative;left: 0px">
+                <label class="input_label">off</label>
+                <input type="checkbox" class="check_style" id="EQ_enable">
+                <label for="EQ_enable" class="green"></label>
+                <label class="input_label">on</label>
+                <label class="input_label" style="margin-left: 30px">EQ_enable</label>
+            </span>
+            <div style="display: flex;flex-direction: row;margin-top: 20px">
+                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
+                    <div class="slider_box_left" style="width: 50px">
+                        <ul class="output_slider4_ul">
+                            <li>+18&nbsp;-</li>
+                            <li>+9&nbsp;&nbsp;&nbsp;-</li>
+                            <li>0&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-9&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-18&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right" style="width: 40px;">
+                        <input id="eq_gain_slider" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">dB</label><br>
+                        <input type="number" value="0" id="eq_gain_slider_num" onchange="setVal(this)"><br>
+                        <label style="color: #00b8ef">增益</label>
+                    </div>
+                </div>
+                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
+                    <div class="slider_box_left" style="width: 50px">
+                        <ul class="output_slider2_ul">
+                            <li>20k&nbsp;&nbsp;&nbsp;-</li>
+                            <li>1k&nbsp;&nbsp;&nbsp;-</li>
+                            <li>150&nbsp;&nbsp;&nbsp;-</li>
+                            <li>20&nbsp;&nbsp;&nbsp;-</li>
+                            <li>10&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right" style="width: 40px;">
+                        <input id="eq_freq_slider" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">Hz</label><br>
+                        <input type="number" value="200" id="eq_freq_slider_num" onchange="setVal(this)"><br>
+                        <label style="color: #00b8ef">频率</label>
+                    </div>
+                </div>
+                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
+                    <div class="slider_box_left" style="width: 50px">
+                        <ul class="output_slider6_ul">
+                            <li>48&nbsp;&nbsp;&nbsp;-</li>
+                            <li>36&nbsp;&nbsp;&nbsp;-</li>
+                            <li>24&nbsp;&nbsp;&nbsp;-</li>
+                            <li>12&nbsp;&nbsp;&nbsp;-</li>
+                            <li>0.1&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right" style="width: 40px;">
+                        <input id="eq_q_slider" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">&nbsp;</label><br>
+                        <input type="number" value="1" id="eq_q_slider_num" onchange="setVal(this)"><br>
+                        <label style="color: #00b8ef">Q值</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            //托条数据
+            var ticks1 = [-18, -9, 0, 9, 18];
+            var ticks_positions1 = [0, 25, 50, 75, 100];
+            var value1 = 0;
+            var slider = create_slider("#eq_gain_slider", ticks1, ticks_positions1, value1);
+
+            var ticks2 = [10, 20, 150, 1000, 20000];
+            var ticks_positions2 = [0, 25, 50, 75, 100];
+            var value2 = 200;
+            var slider1 = create_slider("#eq_freq_slider", ticks2, ticks_positions2, value2);
+
+            var ticks6 = [0.1, 12, 24, 36, 48];
+            var ticks_positions6 = [0, 25, 50, 75, 100];
+            var value6 = 1;
+            var slider5 = create_slider("#eq_q_slider", ticks6, ticks_positions6, value6);
+
+
+            function getVal(e) {
+                $(e).parents(".slider_box_right").siblings(".slider_box_bottom").children("input").val(e.value);
+                var gain = $("#eq_gain_slider_num").val();
+                var freq = $("#eq_freq_slider_num").val();
+                var q = $("#eq_q_slider_num").val();
+                var x = canvas.width;
+                var y = canvas.height;
+                context.clearRect(0, -y, x, 2*y);
+                get_form_eq_data(context, gain, q, freq);
+            }
+            function setVal(e) {
+                var id = $(e).attr("id");
+                if(id == 'eq_gain_slider_num'){
+                    slider.setValue(e.value);
+                }
+                else if(id == 'eq_freq_slider_num'){
+                    slider1.setValue(e.value);
+                }
+                else if(id == 'eq_q_slider_num'){
+                    slider5.setValue(e.value);
+                }
+
+                var gain = $("#eq_gain_slider_num").val();
+                var freq = $("#eq_freq_slider_num").val();
+                var q = $("#eq_q_slider_num").val();
+                var x = canvas.width;
+                var y = canvas.height;
+                context.clearRect(0, -y, x, 2*y);
+                get_form_eq_data(context, gain, q, freq);
+            }
+            function create_slider(id, ticks, ticks_positions, value) {
+                return new Slider(id, {
+                    ticks: ticks,
+                    ticks_positions: ticks_positions,
+                    formatter: function () {
+                        return '';
+                    },
+                    value: value,
+                    step: 0.1,
+                    orientation: 'vertical',
+                    reversed: true,
+                });
+            }
+        </script>
+    </div>
+    <div class="canvas_main">
+        <canvas id="eq_canvas" width="1000" height="480">
+        </canvas>
+        <canvas id="bg_canvas" width="1000" height="480">
+
+        </canvas>
+        <script src="css/eq_zb.js"></script>
+        <div id="move_canvas" >
+            <div id="eq_item_1" class="eq_item">1</div>
+        </div>
+        <script src="css/eq_move.js"></script>
+    </div>
+</div>
+<script>
+    var canvas = document.getElementById("eq_canvas");
+    var context = canvas.getContext('2d');
+
+    $(function () {
+        context.lineWidth = 2;
+        context.strokeStyle = "white";
+        context.translate(0, 240);
+        //context.clearRect(0, -y, x, 2*y);
+    });
+    function get_form_eq_data(context, gain, q, freq) {
+        context.scale(1,1);
+        var list = window.external.get_dataY(gain, q, freq);
+        var listy = eval("("+list+")");
+
+        context.beginPath();
+        for (var i = 0; i < listy.length; i++) {
+            context.lineTo(i, -listy[i]*13);
+        }
+        context.stroke();
+        context.closePath();
+    }
+
+</script>
+</body>
+</html>

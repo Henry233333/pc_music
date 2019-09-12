@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Selectable Ports</title>
+    <meta name="description" content="Support selecting ports within nodes."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .inter_model_main {
+            box-sizing: border-box;
+            padding-top: 50px;
+            display: flex;
+            flex-direction: row;
+            padding-left: 30px;
+            width: 1000px;
+        }
+
+        .group1 {
+            border: 2px solid white;
+            width: 500px;
+            height: 400px;
+            box-sizing: border-box;
+            padding-left: 50px;
+            padding-top: 50px;
+            margin-right: 50px;
+        }
+        label{
+            color: white;
+            margin-right: 10px;
+        }
+        button{
+            color: white;
+            border-radius: 5px;
+            border: none;
+            background-color: gray;
+            padding:5px;
+            margin-left: 10px;
+        }
+
+        textarea{
+            margin-top: 20px;
+            width: 200px;
+            height: 200px;
+            resize: none;
+        }
+    </style>
+</head>
+<body style="background-color:black">
+<div class="inter_model_main">
+    <fieldset class="group1">
+        <legend style="color:#ffffff;">
+            UDP搜索设备
+        </legend>
+        <div>
+            <label>本地网卡</label>
+            <select id="inter_model_select" style="width: 200px">
+            </select>
+            <button>查找设备</button>
+        </div>
+        <div>
+            <label style="position: relative;top: -150px">设备列表</label>
+            <textarea>
+
+            </textarea>
+        </div>
+    </fieldset>
+    <fieldset class="group1">
+        <legend style="color:#ffffff;">
+            IP地址连接设备
+        </legend>
+        <div>
+            <label>设备IP</label>
+            <input type="text" style="width: 200px" name="device_ip">
+            <button>查找设备</button>
+        </div>
+    </fieldset>
+</div>
+
+</body>
+</html>

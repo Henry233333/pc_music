@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="description" content="Support selecting ports within nodes."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap-slider.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-slider.css">
+    <link rel="stylesheet" href="css/sliders.css"/>
+    <style>
+        .out_compr_main{
+            padding-top: 50px;
+            padding-left: 100px;
+        }
+
+        .drc_slider9_ul > li {
+            margin-top: 43%;
+        }
+
+        .drc_slider10_ul > li {
+            margin-top: 63%;
+        }
+
+        .drc_slider11_ul > li {
+            margin-top: 36%;
+        }
+
+        .drc_slider12_ul > li {
+            margin-top: 76%;
+        }
+    </style>
+</head>
+<body>
+    <div class="out_compr_main">
+        <div>
+            <span style="height: 30px;position: relative;left: 100px">
+                <label class="input_label">off</label>
+                <input type="checkbox" class="check_style" id="drc_left">
+                <label for="drc_left" class="green"></label>
+                <label class="input_label">on</label>&nbsp;&nbsp;&nbsp;
+                <label class="input_label">Compress</label>
+            </span>
+            <div style="display: flex;flex-direction: row;margin-top: 20px">
+                <div class="input_color_box">
+                    <div class="color_box" style="margin-left: 120px">
+                        <div class="color_bar"></div>
+                    </div>
+                </div>
+                <div class="input_slider_box">
+                    <div class="slider_box_left" >
+                        <ul class="drc_slider9_ul">
+                            <li>100&nbsp;-</li>
+                            <li>90&nbsp;&nbsp;&nbsp;-</li>
+                            <li>80&nbsp;&nbsp;&nbsp;-</li>
+                            <li>70&nbsp;&nbsp;&nbsp;-</li>
+                            <li>60&nbsp;&nbsp;&nbsp;-</li>
+                            <li>50&nbsp;&nbsp;&nbsp;-</li>
+                            <li>40&nbsp;&nbsp;&nbsp;-</li>
+                            <li>30&nbsp;&nbsp;&nbsp;-</li>
+                            <li>20&nbsp;&nbsp;&nbsp;-</li>
+                            <li>10&nbsp;&nbsp;&nbsp;-</li>
+                            <li>0&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right">
+                        <input id="drc_slider1" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">ms</label><br>
+                        <input type="number" value="0" id="drc_slider1_num" onchange="setVal(this)"><br>
+                        <label style="color: #00b8ef">Attack</label>
+                    </div>
+                </div>
+                <div class="input_slider_box">
+                    <div class="slider_box_left" >
+                        <ul class="drc_slider10_ul">
+                            <li>5000&nbsp;-</li>
+                            <li>4000&nbsp;-</li>
+                            <li>3000&nbsp;-</li>
+                            <li>2000&nbsp;-</li>
+                            <li>1000&nbsp;-</li>
+                            <li>500&nbsp;&nbsp;&nbsp;-</li>
+                            <li>100&nbsp;&nbsp;&nbsp;-</li>
+                            <li>50&nbsp;&nbsp;&nbsp;-</li>
+                            <li>10&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right" >
+                        <input id="drc_slider2" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">ms</label><br>
+                        <input type="number" value="10" id="drc_slider2_num" onchange="setVal(this)"><br>
+                        <label style="color: #00b8ef">Release</label>
+                    </div>
+                </div>
+                <div class="input_slider_box">
+                    <div class="slider_box_left" >
+                        <ul class="drc_slider11_ul">
+                            <li>0&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-6&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-8&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-10&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-12&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-14&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-16&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-18&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-20&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-25&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-30&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-46&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right">
+                        <input id="drc_slider3" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">dB</label><br>
+                        <input type="number" value="-46" id="drc_slider3_num" onchange="setVal(this)"><br>
+                        <label style="color: #00b8ef">Threshol</label>
+                    </div>
+                </div>
+                <div class="input_slider_box">
+                    <div class="slider_box_left" style="margin-left: 0px">
+                        <ul class="drc_slider12_ul">
+                            <li>limiter&nbsp;-</li>
+                            <li>20:1&nbsp;&nbsp;&nbsp;-</li>
+                            <li>10:1&nbsp;&nbsp;&nbsp;-</li>
+                            <li>5:1&nbsp;&nbsp;&nbsp;-</li>
+                            <li>4:1&nbsp;&nbsp;&nbsp;-</li>
+                            <li>3:1&nbsp;&nbsp;&nbsp;-</li>
+                            <li>2:1&nbsp;&nbsp;&nbsp;-</li>
+                            <li>1:1&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right">
+                        <input id="drc_slider4" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom" style="margin-top: 18px">
+                        <input type="number" value="1" id="drc_slider4_num" onchange="setVal(this)"><br>
+                        <label style="color: #00b8ef">Ratio</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var ticks1 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+        var ticks_positions1 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+        var value1 = 0;
+        var slider1 = create_slider("#drc_slider1", ticks1, ticks_positions1, value1);
+
+        var ticks2 = [10, 50, 100, 500, 1000, 2000, 3000, 4000, 5000];
+        var ticks_positions2 = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
+        var value2 = -10;
+        var slider2 = create_slider("#drc_slider2", ticks2, ticks_positions2, value2);
+
+
+        var ticks3 = [-46, -30, -25, -20, -18, -16, -14, -12, -8, -6, 0];
+        var ticks_positions3 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+        var value3 = -46;
+        var slider3 = create_slider("#drc_slider3", ticks3, ticks_positions3, value3);
+
+
+        var ticks4 = [1, 2, 3, 4, 5, 10, 20, 127];
+        var d6 = 100 / 7;
+        var ticks_positions4 = [0, d6, d6 * 2, d6 * 3, d6 * 4, d6 * 5, d6 * 6, 100];
+        var value4 = 1;
+        var step = 1;
+        var slider4 = create_slider("#drc_slider4", ticks4, ticks_positions4, value4, step);
+
+        function setVal(e) {
+            var id = $(e).attr('id');
+            if(id=="drc_slider1_num"){slider1.setValue(e.value)}
+            else if(id=="drc_slider2_num"){slider2.setValue(e.value)}
+            else if(id=="drc_slider3_num"){slider3.setValue(e.value)}
+            else if(id=="drc_slider4_num"){slider4.setValue(e.value)}
+        }
+
+        function getVal(e) {
+            $(e).parents(".slider_box_right").siblings(".slider_box_bottom").children("input").val(e.value);
+        }
+
+        function create_slider(id, ticks, ticks_positions, value, step) {
+            if (step === undefined) {
+                step = 0.1;
+            }
+            return  new Slider(id, {
+                ticks: ticks,
+                ticks_positions: ticks_positions,
+                formatter: function () {
+                    return '';
+                },
+                value: value,
+                step: step,
+                orientation: 'vertical',
+                reversed: true,
+            });
+        }
+
+    </script>
+</body>
+</html>

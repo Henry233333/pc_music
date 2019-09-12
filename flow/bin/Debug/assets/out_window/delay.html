@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="description" content="Support selecting ports within nodes."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <script src="js/jquery-ui.js"></script>
+    <style>
+        .out_delay_main {
+            background: linear-gradient(#566277, #47494e);
+            display: flex;
+            flex-direction: row;
+            opacity: 0.9;
+            width: 640px;
+            height: 150px;
+            border: none;
+            border-radius: 15px;
+            margin-left: 300px;
+            margin-top: 200px;
+        }
+
+        .left {
+            width: 20%;
+            height: 50px;
+            margin-top: 50px;
+            box-sizing: border-box;
+            padding-left: 5%;
+        }
+
+        .center {
+            width: 50%;
+            text-align: center;
+        }
+
+        .center > div {
+            width: 100%;
+        }
+
+        .right {
+            width: 30%;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .right > div> label {
+            display: inline-block;
+            color: white;
+            margin-top: 35px;
+            margin-left: 20px;
+        }
+
+        #delay_slider {
+            height: 5px;
+            margin-top: 15px;
+            width: 96%;
+        }
+
+        .delay_ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            flex-flow: nowrap;
+            width: 95%;
+            margin-top: 40px;
+        }
+
+        .delay_ul > li {
+            color: white;
+            margin-left: 5%;
+            width: 10px;
+            text-align: center;
+        }
+
+        .delay_ul > li:first-child {
+            margin-left: 0%;
+        }
+
+        #delay_slider_num {
+            width: 60px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .delay_enable{
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 80px;
+            height: 30px;
+            background-color: gray;
+            margin-top: 58px;
+            margin-left: 15px;
+        }
+        body{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<div class="out_delay_main">
+    <div class="left">
+        <label style="color: #00feff;font-size: 20px">Delay</label>
+    </div>
+    <div class="center">
+        <div>
+            <ul class="delay_ul">
+                <li>0</li>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+                <li>11</li>
+                <li>12</li>
+            </ul>
+        </div>
+        <div id="delay_slider"></div>
+    </div>
+    <div class="right">
+        <div>
+            <label>ms</label><br>
+            <input type="number" readonly id="delay_slider_num">
+        </div>
+        <div>
+            <button class="delay_enable">Enable</button>
+        </div>
+
+    </div>
+</div>
+</body>
+<script>
+    $(function () {
+        $("#delay_slider").slider({
+            range: "min",
+            value: 0,
+            min: 0,
+            max: 12,
+            slide: function (event, ui) {
+                $("#delay_slider_num").val(ui.value);
+            }
+        });
+        $("#delay_slider_num").val($("#delay_slider").slider("value"));
+    });
+</script>
+</html>

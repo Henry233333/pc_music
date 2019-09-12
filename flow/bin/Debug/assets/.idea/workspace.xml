@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a7d9c8e0-a547-46a6-bcb4-14207d3c1520" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../assets/.idea/assets.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out_window/js/eq_move.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../flow.v11.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../flow.v11.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/bootstrap-slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/index/js/bootstrap-slider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/go.js" beforeDir="false" afterPath="$PROJECT_DIR$/index/js/go.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/index_drc.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/index_drc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/index_input.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/index_input.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/index_output.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/index_output.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/index_xndy.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/index_xndy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/index/js/jquery.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/bootstrap-slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/js/bootstrap-slider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/compr.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/compr.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/css/eq_move.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/css/eq_zb.js" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/js/eq_zb.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/delay.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/delay.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/fir.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/fir.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/gain.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/gain.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/jquery-ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/js/jquery-ui.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/js/jquery.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/ldeq.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/ldeq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/limiter.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/limiter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/noisegate.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/noisegate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/peak-level.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/peak-level.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/peq.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/peq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/peq_draw.js" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/js/peq_draw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/rms-level.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/rms-level.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/xover.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/xover.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../eq_form.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../eq_form.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectId" id="1QGmlOOkHrvtYgrjsaAbGUDtbWb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../work/EQHtml5-20180918-test/EQHtml5-New-1" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\work\winform\flow\flow\bin\Debug\assets\index\js" />
+      <recent name="D:\work\winform\flow\flow\bin\Debug\assets\out_window\js" />
+      <recent name="E:\Work\winform\flow\flow\bin\Debug\assets\out_window\css" />
+      <recent name="E:\Work\winform\flow\flow\bin\Debug\assets\index" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Work\winform\flow\flow\bin\Debug\assets\out_window" />
+      <recent name="E:\Work\winform\flow\flow\bin\Debug\assets\index\css" />
+      <recent name="E:\Work\winform\flow\flow\bin\Debug\assets\index" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a7d9c8e0-a547-46a6-bcb4-14207d3c1520" name="Default Changelist" comment="" />
+      <created>1566801723254</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1566801723254</updated>
+      <workItem from="1566801725347" duration="13197000" />
+      <workItem from="1566830570447" duration="675000" />
+      <workItem from="1566872934361" duration="24685000" />
+      <workItem from="1566954353779" duration="23460000" />
+      <workItem from="1567043740248" duration="4208000" />
+      <workItem from="1567072133650" duration="124000" />
+      <workItem from="1567134504315" duration="117000" />
+      <workItem from="1567405464019" duration="32000" />
+      <workItem from="1567578242777" duration="4574000" />
+      <workItem from="1567648578470" duration="7774000" />
+      <workItem from="1567737467964" duration="10033000" />
+      <workItem from="1567992675698" duration="32752000" />
+      <workItem from="1568097698339" duration="9349000" />
+      <workItem from="1568168254200" duration="12196000" />
+      <workItem from="1568250998318" duration="12661000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

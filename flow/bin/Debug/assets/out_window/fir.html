@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="description" content="Support selecting ports within nodes."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap-slider.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-slider.css">
+    <link rel="stylesheet" href="css/sliders.css"/>
+    <style>
+        .out_fir_main{
+            padding-top: 50px;
+            padding-left: 200px;
+        }
+        .right {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+</head>
+<body>
+    <div class="out_fir_main">
+        <div class="right">
+            <div style="width: 300px">
+                <span style="height: 30px;position: relative;top: 100px">
+                <label class="input_label" style="margin-left: 30px">FIR</label><br><br>
+                <label class="input_label">off</label>
+                <input type="checkbox" class="check_style" id="fir">
+                <label for="fir" class="green"></label>
+                <label class="input_label">on</label>
+                </span>
+            </div>
+            <div style="width: 300px">
+                <span style="height: 30px;position: relative;top: 100px">
+                <label class="input_label" style="margin-left: 30px">Type</label><br><br>
+                <select id="fir_select1" style="width: 120px;height: 24px">
+                    <option value="type1" selected>type1</option>
+                    <option value="type2">type2</option>
+                </select>
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

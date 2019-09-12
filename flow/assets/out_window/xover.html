@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="description" content="Support selecting ports within nodes."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap-slider.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-slider.css">
+    <link rel="stylesheet" href="css/sliders.css"/>
+    、
+    <style>
+        .out_xover_main {
+            background: linear-gradient(#566277, #47494e);
+            display: flex;
+            flex-direction: row;
+            opacity: 0.9;
+            width: 600px;
+            height: 200px;
+            border: none;
+            border-radius: 15px;
+            margin-left: 300px;
+            margin-top: 100px;
+        }
+
+        .left {
+            width: 20%;
+            padding-left: 10px;
+            padding-top: 20px;
+        }
+
+        .center {
+            width: 45%;
+        }
+
+        .right {
+            width: 35%;
+        }
+
+        .xover_button1 {
+            color: white;
+            width: 80px;
+            height: 30px;
+            border-radius: 5px;
+            border: none;
+            background-color: gray;
+        }
+
+        .xover_input {
+            height: 20px;
+        }
+
+        p {
+            color: white;
+            text-align: center;
+        }
+        .xover_table{
+            border: none;
+            margin-top: 30px;
+        }
+        tr{
+            border: none;
+        }
+        td{
+            border: none;
+            color: white;
+            text-align: left;
+            padding-right: 10px;
+            height: 40px;
+        }
+        select{
+            height: 25px;
+            width: 110px;
+        }
+    </style>
+</head>
+<body>
+<div class="left" style="margin-left: 100px;margin-top: 50px">
+        <span style="height: 30px;">
+                <label class="input_label">off</label>
+                <input type="checkbox" class="check_style" id="LevelDetect">
+                <label for="LevelDetect" class="green"></label>
+                <label class="input_label">on</label>
+                <label class="input_label" style="margin-left: 30px">Xover</label>
+        </span>
+</div>
+<div class="out_xover_main">
+
+    <div class="left">
+        <p>
+            <button class="xover_button1">
+                Bypass
+            </button>
+        </p>
+        <p>获取频点dB</p>
+        <p>
+            <input type="number" class="xover_input" style="width: 60px">
+        </p>
+        <p>0dB</p>
+
+    </div>
+    <div class="center">
+        <table class="xover_table">
+            <tr>
+                <td>FilterType</td>
+                <td>
+                    <select id="xover_select1">
+                        <option value="buttworth" selected="selected">BUTTWORTH</option>
+                        <option value="other" >other</option>
+                    </select>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Freq</td>
+                <td><input type="number" id="xover_input2" class="xover_input" style="width: 80px"></td>
+                <td>Hz</td>
+            </tr>
+            <tr>
+                <td>OCT</td>
+                <td>
+                    <select id="xover_select2">
+                        <option value="1" selected="selected">1</option>
+                        <option value="2" >2</option>
+                        <option value="3" >3</option>
+                        <option value="4" >4</option>
+                        <option value="5" >5</option>
+                        <option value="6" >6</option>
+                        <option value="7" >7</option>
+                        <option value="8" >8</option>
+                    </select>
+                </td>
+                <td>dB/OCT</td>
+            </tr>
+        </table>
+    </div>
+    <div class="right">
+        <table class="xover_table">
+            <tr>
+                <td>Type</td>
+                <td>
+                    <select id="xover_select3" style="width: 140px">
+                        <option value="high" selected="selected">High Passed Filter</option>
+                        <option value="low" >Low Passed Filter</option>
+                    </select>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
