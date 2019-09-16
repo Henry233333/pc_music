@@ -69,6 +69,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1920, 1001);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel2
             // 
@@ -310,6 +311,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "SONA_AI";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

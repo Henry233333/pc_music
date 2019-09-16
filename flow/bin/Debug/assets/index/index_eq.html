@@ -1,18 +1,481 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Selectable Ports</title>
+    <title>eq</title>
     <meta name="description" content="Support selecting ports within nodes."/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap-slider.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-slider.css">
+    <link rel="stylesheet" href="css/sliders.css"/>
     <style>
-        label{
+        label {
             color: white;
+        }
+
+        .out_eq_main {
+            display: flex;
+            flex-direction: row;
+            padding-top: 20px;
+            padding-left: 30px;
+            width: 100%;
+        }
+
+        #eq_canvas {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            z-index: 1;
+            width: 1000px;
+            height: 480px;
+            overflow: hidden;
+        }
+
+        .left {
+            width: 400px;
+            height: 600px;
+
+        }
+
+        .output_slider4_ul > li {
+            margin-top: 162%;
+        }
+
+        .output_slider2_ul > li {
+            margin-top: 162%;
+        }
+
+        .output_slider6_ul > li {
+            margin-top: 162%;
+        }
+
+        #bg_canvas {
+            position: absolute;
+            z-index: -2;
+            width: 1000px;
+            height: 480px;
+            top: 50px;
+            left: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.49);
+            background-color: #2b2b2b;
+        }
+
+        #move_canvas {
+            position: absolute;
+            z-index: 4;
+            width: 1000px;
+            height: 480px;
+            top: 50px;
+            left: 50px;
+            overflow: hidden;
+        }
+
+        .eq_item {
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            position: absolute;
+            border: none;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            -ms-transform: translateX(-50%) translateY(-50%);
+            border-radius: 50px;
+            -ms-user-select:none;
+            user-select:none;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        #eq_item_1 {
+            left: 10px;
+            box-shadow: 0px 0px 10px 5px rgba(255, 9, 1, 0.69);
+        }
+
+        #eq_item_2 {
+            left: 100px;
+            box-shadow: 0px 0px 10px 5px rgba(255, 77, 7, 0.69);
+        }
+
+        #eq_item_3 {
+            left: 200px;
+            box-shadow: 0px 0px 10px 5px rgba(255, 230, 0, 0.69);
+        }
+
+        #eq_item_4 {
+            left: 300px;
+            box-shadow: 0px 0px 10px 5px rgba(48, 255, 2, 0.69);
+        }
+
+        #eq_item_5 {
+            left: 400px;
+            box-shadow: 0px 0px 10px 5px rgba(0, 255, 232, 0.69);
+        }
+
+        #eq_item_6 {
+            left: 500px;
+            box-shadow: 0px 0px 10px 5px rgba(0, 104, 255, 0.69);
+        }
+
+        #eq_item_7 {
+            left: 600px;
+            box-shadow: 0px 0px 10px 5px rgba(206, 11, 255, 0.69);
+        }
+
+        #eq_item_8 {
+            left: 700px;
+            box-shadow: 0px 0px 10px 5px rgba(255, 0, 120, 0.69);
+        }
+
+        .canvas_main {
+            width: 1100px;
+            overflow: hidden;
+            position: absolute;
+            height: 800px;
+            left: 400px;
+
         }
     </style>
 
 </head>
-<body style="background-color:black">
-    <label for="">eq</label>
+<body style="background-color:black" >
+<div class="out_eq_main">
+
+    <div class="left">
+        <div style="width: 400px">
+            <span style="height: 30px;position: relative;left: 0px">
+                <label class="input_label">off</label>
+                <input type="checkbox" class="check_style" onchange="change_enable(this)" checked="checked" id="EQ_enable">
+                <label for="EQ_enable" class="green"></label>
+                <label class="input_label">on</label>
+                <label class="input_label" style="margin-left: 30px">EQ</label>
+                <select style="margin-left: 30px" onchange="change_filter_type(this)" id="filter_type">
+                    <option value="0">AP1</option>
+                    <option value="1">LP1</option>
+                    <option value="2">HP1</option>
+                    <option value="3">LS1</option>
+                    <option value="4">HS1</option>
+                    <option value="5">LP2</option>
+                    <option value="6">HP2</option>
+                    <option value="7">LS2</option>
+                    <option value="8">HS2</option>
+                    <option value="9" selected="selected" >PEAK</option>
+                    <option value="10">NOTCH</option>
+                    <option value="11">AP2</option>
+                    <option value="12">BP2</option>
+                    <option value="13">BP2_0GAIN</option>
+                </select>
+            </span>
+            <script>
+                var item_status_1 = {"enable":1,"filter_type":9};
+                var item_status_2 = {"enable":1,"filter_type":9};
+                var item_status_3 = {"enable":1,"filter_type":9};
+                var item_status_4 = {"enable":1,"filter_type":9};
+                var item_status_5 = {"enable":1,"filter_type":9};
+                var item_status_6 = {"enable":1,"filter_type":9};
+                var item_status_7 = {"enable":1,"filter_type":9};
+                var item_status_8 = {"enable":1,"filter_type":9};
+                function change_enable(e) {
+
+                    if ($(e).is(":checked")) {
+                        if(now_eq_item_id==0){item_status_1.enable = 1};
+                        if(now_eq_item_id==1){item_status_2.enable = 1};
+                        if(now_eq_item_id==2){item_status_3.enable = 1};
+                        if(now_eq_item_id==3){item_status_4.enable = 1};
+                        if(now_eq_item_id==4){item_status_5.enable = 1};
+                        if(now_eq_item_id==5){item_status_6.enable = 1};
+                        if(now_eq_item_id==6){item_status_7.enable = 1};
+                        if(now_eq_item_id==7){item_status_8.enable = 1};
+                    } else {
+                        if(now_eq_item_id==0){item_status_1.enable = 0};
+                        if(now_eq_item_id==1){item_status_2.enable = 0};
+                        if(now_eq_item_id==2){item_status_3.enable = 0};
+                        if(now_eq_item_id==3){item_status_4.enable = 0};
+                        if(now_eq_item_id==4){item_status_5.enable = 0};
+                        if(now_eq_item_id==5){item_status_6.enable = 0};
+                        if(now_eq_item_id==6){item_status_7.enable = 0};
+                        if(now_eq_item_id==7){item_status_8.enable = 0};
+                    }
+                }
+                function change_filter_type(e) {
+                    if(now_eq_item_id==0){item_status_1.filter_type = e.value};
+                    if(now_eq_item_id==1){item_status_2.filter_type = e.value};
+                    if(now_eq_item_id==2){item_status_3.filter_type = e.value};
+                    if(now_eq_item_id==3){item_status_4.filter_type = e.value};
+                    if(now_eq_item_id==4){item_status_5.filter_type = e.value};
+                    if(now_eq_item_id==5){item_status_6.filter_type = e.value};
+                    if(now_eq_item_id==6){item_status_7.filter_type = e.value};
+                    if(now_eq_item_id==7){item_status_8.filter_type = e.value};
+                }
+
+            </script>
+            <div style="display: flex;flex-direction: row;margin-top: 20px">
+                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
+                    <div class="slider_box_left" style="width: 50px">
+                        <ul class="output_slider4_ul">
+                            <li>+18&nbsp;-</li>
+                            <li>+9&nbsp;&nbsp;&nbsp;-</li>
+                            <li>0&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-9&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-18&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right" style="width: 40px;">
+                        <input id="eq_gain_slider" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">dB</label><br>
+                        <input type="number" value="0" id="eq_gain_slider_num" class="slider_number_in"><br>
+                        <label style="color: #00b8ef">增益</label>
+                    </div>
+                </div>
+                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
+                    <div class="slider_box_left" style="width: 50px">
+                        <ul class="output_slider2_ul">
+                            <li>20k&nbsp;&nbsp;&nbsp;-</li>
+                            <li>1k&nbsp;&nbsp;&nbsp;-</li>
+                            <li>150&nbsp;&nbsp;&nbsp;-</li>
+                            <li>20&nbsp;&nbsp;&nbsp;-</li>
+                            <li>10&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right" style="width: 40px;">
+                        <input id="eq_freq_slider" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">Hz</label><br>
+                        <input type="number" value="200" id="eq_freq_slider_num" class="slider_number_in"><br>
+                        <label style="color: #00b8ef">频率</label>
+                    </div>
+                </div>
+                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
+                    <div class="slider_box_left" style="width: 50px">
+                        <ul class="output_slider6_ul">
+                            <li>48&nbsp;&nbsp;&nbsp;-</li>
+                            <li>36&nbsp;&nbsp;&nbsp;-</li>
+                            <li>24&nbsp;&nbsp;&nbsp;-</li>
+                            <li>12&nbsp;&nbsp;&nbsp;-</li>
+                            <li>0.1&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right" style="width: 40px;">
+                        <input id="eq_q_slider" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">&nbsp;</label><br>
+                        <input type="number" value="1" id="eq_q_slider_num" class="slider_number_in"><br>
+                        <label style="color: #00b8ef">Q值</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            //托条数据
+            var ticks1 = [-18, -9, 0, 9, 18];
+            var ticks_positions1 = [0, 25, 50, 75, 100];
+            var value1 = 0;
+            var slider = create_slider("#eq_gain_slider", ticks1, ticks_positions1, value1);
+
+            var ticks2 = [10, 20, 150, 1000, 20000];
+            var ticks_positions2 = [0, 25, 50, 75, 100];
+            var value2 = 200;
+            var slider1 = create_slider("#eq_freq_slider", ticks2, ticks_positions2, value2);
+
+            var ticks6 = [0.1, 12, 24, 36, 48];
+            var ticks_positions6 = [0, 25, 50, 75, 100];
+            var value6 = 1;
+            var slider5 = create_slider("#eq_q_slider", ticks6, ticks_positions6, value6);
+
+
+            function getVal(e) {
+                $(e).parents(".slider_box_right").siblings(".slider_box_bottom").children("input").val(e.value);
+                var gain = $("#eq_gain_slider_num").val();
+                var freq = $("#eq_freq_slider_num").val();
+                var q = $("#eq_q_slider_num").val();
+                var x = canvas.width;
+                var y = canvas.height;
+                context.clearRect(0, -y, x, 2 * y);
+                set_node_data(now_eq_item_id, gain, q, freq);
+                get_form_eq_data(context);
+                get_node_line(now_eq_item_id, context);
+
+                if(now_eq_item_id == 0){
+                    var eq_id = 'eq_item_1';
+                }
+                else if(now_eq_item_id==1){
+                    var eq_id = 'eq_item_2';
+                }
+                else if(now_eq_item_id==2){
+                    var eq_id = 'eq_item_3';
+                }
+                else if(now_eq_item_id==3){
+                    var eq_id = 'eq_item_4';
+                }
+                else if(now_eq_item_id==4){
+                    var eq_id = 'eq_item_5';
+                }
+                else if(now_eq_item_id==5){
+                    var eq_id = 'eq_item_6';
+                }
+                else if(now_eq_item_id==6){
+                    var eq_id = 'eq_item_7';
+                }
+                else if(now_eq_item_id==7){
+                    var eq_id = 'eq_item_8';
+                }
+                move_item(eq_id, freq, gain);
+            }
+
+            function move_item(id, freq, gain) {
+                var Drag = document.getElementById(id);
+                var item_L = window.external.get_ponitX(freq) / 2;
+                var item_T = -(gain * 13) + 240;
+                Drag.style.left = item_L + "px";
+                Drag.style.top = item_T + "px";
+                Drag.style.cursor = "move";
+            }
+
+            $(".slider_number_in").change(function () {
+                var id = $(this).attr("id");
+                if (id == 'eq_gain_slider_num') {
+                    slider.setValue(this.value);
+                }
+                else if (id == 'eq_freq_slider_num') {
+                    slider1.setValue(this.value);
+                }
+                else if (id == 'eq_q_slider_num') {
+                    slider5.setValue(this.value);
+                }
+                var gain = $("#eq_gain_slider_num").val();
+                var freq = $("#eq_freq_slider_num").val();
+                var q = $("#eq_q_slider_num").val();
+                var x = canvas.width;
+                var y = canvas.height;
+                var eq_id = 'eq_item_1';
+                move_item(eq_id, freq, gain);
+                context.clearRect(0, -y, x, 2 * y);
+                set_node_data(now_eq_item_id, gain, q, freq);
+                get_form_eq_data(context);
+                get_node_line(now_eq_item_id, context);
+
+            });
+
+            function create_slider(id, ticks, ticks_positions, value) {
+                return new Slider(id, {
+                    ticks: ticks,
+                    ticks_positions: ticks_positions,
+                    formatter: function () {
+                        return '';
+                    },
+                    value: value,
+                    step: 0.1,
+                    orientation: 'vertical',
+                    reversed: true,
+                });
+            }
+
+        </script>
+    </div>
+    <div class="canvas_main">
+        <canvas id="eq_canvas" width="2000" height="480">
+        </canvas>
+        <canvas id="bg_canvas" width="1000" height="480">
+        </canvas>
+        <script src="js/eq_zb.js"></script>
+        <div id="move_canvas" style="transform-origin: 50%">
+            <div id="eq_item_1" name="0" class="eq_item">1</div>
+            <div id="eq_item_2" name="1" class="eq_item">2</div>
+            <div id="eq_item_3" name="2" class="eq_item">3</div>
+            <div id="eq_item_4" name="3" class="eq_item">4</div>
+            <div id="eq_item_5" name="4" class="eq_item">5</div>
+            <div id="eq_item_6" name="5" class="eq_item">6</div>
+            <div id="eq_item_7" name="6" class="eq_item">7</div>
+            <div id="eq_item_8" name="7" class="eq_item">8</div>
+        </div>
+        <script src="js/eq_move.js"></script>
+    </div>
+</div>
+<script>
+    var canvas = document.getElementById("eq_canvas");
+    var context = canvas.getContext('2d');
+
+    $(function () {
+
+        context.translate(0, 240);
+        //context.clearRect(0, -y, x, 2*y);
+    });
+
+    //get_eq_all_line
+    function get_form_eq_data(context) {
+        context.lineWidth = 3;
+        context.strokeStyle = "white";
+        context.scale(1, 1);
+        var list = window.external.get_dataY();
+        var listy = eval("(" + list + ")");
+
+        context.beginPath();
+        for (var i = 0; i < listy.length; i++) {
+            context.lineTo(i, -listy[i] * 13);
+        }
+        context.stroke();
+        context.closePath();
+    }
+
+    //get_eq_node_line
+    function set_node_data(id, gain, q, freq) {
+        var enable = 0;
+        var filter_type = 0;
+        if(id==0){enable = item_status_1.enable,filter_type = item_status_1.filter_type};
+        if(id==1){enable = item_status_2.enable,filter_type = item_status_2.filter_type};
+        if(id==2){enable = item_status_3.enable,filter_type = item_status_3.filter_type};
+        if(id==3){enable = item_status_4.enable,filter_type = item_status_4.filter_type};
+        if(id==4){enable = item_status_5.enable,filter_type = item_status_5.filter_type};
+        if(id==5){enable = item_status_6.enable,filter_type = item_status_6.filter_type};
+        if(id==6){enable = item_status_7.enable,filter_type = item_status_7.filter_type};
+        if(id==7){enable = item_status_8.enable,filter_type = item_status_8.filter_type};
+
+        window.external.set_node_dataY(id,enable, filter_type, gain, q, freq);
+    }
+
+    function get_node_line(id, context) {
+        context.lineWidth = 1;
+        if (id == 0) {
+            context.strokeStyle = 'rgba(255, 9, 1, 0.69)';
+        }
+        else if (id == 1) {
+            context.strokeStyle = 'rgba(255, 77, 7, 0.69)';
+        }
+        else if (id == 2) {
+            context.strokeStyle = 'rgba(255, 230, 0, 0.69)';
+        }
+        else if (id == 3) {
+            context.strokeStyle = 'rgba(48, 255, 2, 0.69)';
+        }
+        else if (id == 4) {
+            context.strokeStyle = 'rgba(0, 255, 232, 0.69)';
+        }
+        else if (id == 5) {
+            context.strokeStyle = 'rgba(0, 104, 255, 0.69)';
+        }
+        else if (id == 6) {
+            context.strokeStyle = 'rgba(206, 11, 255, 0.69)';
+        }
+        else if (id == 7) {
+            context.strokeStyle = 'rgba(255, 0, 120, 0.69)';
+        }
+
+        var list = window.external.get_node_dataY(id);
+        var listy = eval("(" + list + ")");
+        context.beginPath();
+        for (var i = 0; i < listy.length; i++) {
+            context.lineTo(i, -listy[i] * 13);
+        }
+
+        context.stroke();
+        context.closePath();
+    }
+
+</script>
 </body>
 </html>
