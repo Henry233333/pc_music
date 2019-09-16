@@ -20,10 +20,10 @@ namespace flow
         {
             InitializeComponent();
         }
-        public IntPtr eq_create;
+       
         private void eq_form_Load(object sender, EventArgs e)
         {
-             eq_create = mydll.effectRespCurv_create(8, 2000, 48000, 0);
+            eq_creates();
         }
         
         public void get_eq(string info, string pagekey)
@@ -68,17 +68,28 @@ namespace flow
 
             return list;
         }
-        public String get_dataY(float gain, float q, float freq)
+
+        public IntPtr eq_create;
+        //初始化
+        private void eq_creates()
+        {
+            eq_create = mydll.effectRespCurv_create(8, 2000, 48000, 0);
+            mydll.effectRespCurv_add_bqf(eq_create, 0);
+            mydll.effectRespCurv_add_bqf(eq_create, 1);
+            mydll.effectRespCurv_add_bqf(eq_create, 2);
+            mydll.effectRespCurv_add_bqf(eq_create, 3);
+            mydll.effectRespCurv_add_bqf(eq_create, 4);
+            mydll.effectRespCurv_add_bqf(eq_create, 5);
+            mydll.effectRespCurv_add_bqf(eq_create, 6);
+            mydll.effectRespCurv_add_bqf(eq_create, 7);
+
+        }
+        public String get_dataY()
         {
            
             String list= "[";
-            float[] ResponseMagdB = new float[2000];
-            mydll.effectRespCurv_add_bqf(eq_create, 0);
-            mydll.effectRespCurv_set_bqf_enable(eq_create, 0,1);
-            mydll.effectRespCurv_set_bqf(eq_create, 0, 1, 9, gain, q, freq);  
-            int line =   mydll.effectRespCurv_get_line(eq_create, ResponseMagdB);
-           
-            //mydll.effectRespCurv_get_nodeline(eq_create, 0, ResponseMagdB);
+            float[] ResponseMagdB = new float[2000];         
+            int line =   mydll.effectRespCurv_get_line(eq_create, ResponseMagdB);  
             for (int i = 0; i < ResponseMagdB.Length; i++)
             {  
                 list += "'" + (float)ResponseMagdB[i] + "'" + ",";
@@ -90,11 +101,46 @@ namespace flow
             return list;
         }
 
+        public int set_node_dataY(int id,int enable,int type , float gain, float q, float freq)
+        {
+            try
+            {  
+                 mydll.effectRespCurv_set_bqf_enable(eq_create, id, enable);
+                 mydll.effectRespCurv_set_bqf(eq_create, id, enable, type, gain, q, freq);  
+              
+            }
+            catch (Exception)
+            {
+
+                return 0;
+            }
+
+            return 1;
+           
+        }
+
+        public string get_node_dataY(int id)
+        {
+            String list = "[";
+            float[] ResponseMagdB = new float[2000];
+            //int line = mydll.effectRespCurv_get_line(eq_create, ResponseMagdB);
+            int line = mydll.effectRespCurv_get_nodeline(eq_create, id, ResponseMagdB);
+            for (int i = 0; i < ResponseMagdB.Length; i++)
+            {
+                list += "'" + (float)ResponseMagdB[i] + "'" + ",";
+            }
+            list += "]";
+
+
+
+            return list;
+        }
 
         private void eq_form_FormClosing(object sender, FormClosingEventArgs e)
         {
             mydll.effectRespCurv_destroy(eq_create);
         }
+
         public double get_ponitX(float freq)
         { 
             double point_x = 0;
