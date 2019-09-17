@@ -50,3 +50,15 @@ E:\Work\pc_music\flow\obj\Debug\flow.Form1.resources
 E:\Work\pc_music\flow\obj\Debug\flow.out_form.resources
 E:\Work\pc_music\flow\obj\Debug\flow.Properties.Resources.resources
 E:\Work\pc_music\flow\obj\Debug\flow.csproj.GenerateResource.Cache
+D:\work\pc_music\flow\bin\Debug\flow.exe.config
+D:\work\pc_music\flow\obj\Debug\flow.exe
+D:\work\pc_music\flow\obj\Debug\flow.pdb
+D:\work\pc_music\flow\bin\Debug\flow.exe
+D:\work\pc_music\flow\bin\Debug\flow.pdb
+D:\work\pc_music\flow\bin\Debug\Newtonsoft.Json.dll
+D:\work\pc_music\flow\obj\Debug\flow.csprojResolveAssemblyReference.cache
+D:\work\pc_music\flow\obj\Debug\flow.eq_form.resources
+D:\work\pc_music\flow\obj\Debug\flow.Form1.resources
+D:\work\pc_music\flow\obj\Debug\flow.out_form.resources
+D:\work\pc_music\flow\obj\Debug\flow.Properties.Resources.resources
+D:\work\pc_music\flow\obj\Debug\flow.csproj.GenerateResource.Cache
