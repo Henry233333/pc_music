@@ -108,9 +108,8 @@
                     $(go.Shape, { stroke: "gray", strokeWidth: 2.5 })
                 );
             myDiagram.addDiagramListener("ObjectDoubleClicked", function(e,obj) {
-                var name = e.C.$b.cb.Se.value.name;
-                var key =e.C.$b.cb.Se.value.key;
-                out_window(name,key);
+                var name = e.zs.Pb;
+                out_window(name);
             });    
             function findAllSelectedItems() {
                 var items = [];
@@ -179,22 +178,21 @@
                         model: new go.GraphLinksModel([  // specify the contents of the Palette
                             {name: "INPUT", outservices: [{ name: "out" }]},
                             {name: "OUTPUT", inservices: [{ name: "in" }]},
-                            {name: "ASRC", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "DELAY", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "NLP", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "GAIN", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "MIXER", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "NOISEGATE", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "RMS-LEVEL", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "PEAK-LEVEL", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "XOVER", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "COMPR", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "LIMITER", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "DEQ", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "LDEQ", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "FIR", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "DEMUX", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]},
-                            {name: "PEQ", inservices: [{ name: "in1" }, { name: "in2" }], outservices: [{ name: "out1" }]}
+                            {name: "ASRC", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "DELAY", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "NLP", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "GAIN", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "MIXER", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "NOISEGATE", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "RMS-LEVEL", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "PEAK-LEVEL", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "XOVER", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "COMPR", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "LIMITER", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "DEQ", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "LDEQ", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "FIR", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
+                            {name: "PEQ", inservices: [{ name: "in" }], outservices: [{ name: "out" }]}
                         ])
                     });
 
@@ -244,8 +242,10 @@
                 "  \"linkDataArray\": []}";
             load();
         }
-       function out_window(name,key) {
-           window.external.out_window(name,key);
+       function out_window(name) {
+            if(name!=""&&name!=undefined){
+                window.external.out_window(name);
+            }
        }
     </script>
 </head>

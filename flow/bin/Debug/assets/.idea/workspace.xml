@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7d9c8e0-a547-46a6-bcb4-14207d3c1520" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../../flow.v11.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../flow.v11.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Form1.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Form1.Designer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index/index_eq.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/index_eq.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/DesignTimeResolveAssemblyReferences.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/DesignTimeResolveAssemblyReferences.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.csproj.GenerateResource.Cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.csproj.GenerateResource.Cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.csprojResolveAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.csprojResolveAssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/js/eq_move.js" beforeDir="false" afterPath="$PROJECT_DIR$/index/js/eq_move.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/js/eq_move.js" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/js/eq_move.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/peq.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/peq.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,11 +26,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="570" />
-    <option name="width" value="1360" />
-    <option name="height" value="1050" />
   </component>
   <component name="ProjectId" id="1QGmlOOkHrvtYgrjsaAbGUDtbWb" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -103,7 +91,7 @@
       <workItem from="1568168254200" duration="12196000" />
       <workItem from="1568250998318" duration="12661000" />
       <workItem from="1568597376147" duration="14749000" />
-      <workItem from="1568689144460" duration="1108000" />
+      <workItem from="1568689144460" duration="10618000" />
     </task>
     <task id="LOCAL-00001" summary="items types enable">
       <created>1568613009490</created>
@@ -112,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568613009490</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="窗口调整">
+      <created>1568690277053</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1568690277053</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,6 +128,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="items types enable" />
-    <option name="LAST_COMMIT_MESSAGE" value="items types enable" />
+    <MESSAGE value="窗口调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="窗口调整" />
   </component>
 </project>

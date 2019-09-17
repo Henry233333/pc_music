@@ -2,14 +2,36 @@ function dragFunc(id) {
     var Drag = document.getElementById(id);
     var $box = document.getElementById('move_canvas');
     var name = $("#" + id).attr("name");
-
-
     Drag.onmousedown = function (event) {
         var ev = event || window.event;
         event.stopPropagation();
         var disX = ev.clientX - Drag.offsetLeft;
         var disY = ev.clientY - Drag.offsetTop;
         change_item_status(name);
+
+        var ev = event || window.event;
+        var L = event.clientX - disX;
+        var T = event.clientY - disY;
+
+        Drag.style.left = L + "px";
+        Drag.style.top = T + "px";
+        Drag.style.cursor = "move";
+        var itemX = L * 2;
+        var itemY = -(T - 240) / 13;
+        if (itemX < 0) {
+            itemX = 0;
+        }
+        if (itemX > 2000) {
+            itemX = 2000
+        }
+        if (itemY > 18) {
+            itemY = 18;
+        }
+        if (itemY < -18) {
+            itemY = -18;
+        }
+        change_item_xy(name, itemX, itemY);
+
         document.onmousemove = function (event) {
             var ev = event || window.event;
             var L = event.clientX - disX;
@@ -68,8 +90,12 @@ dragFunc("eq_item_7");
 dragFunc("eq_item_8");
 var now_eq_item_id = 0;
 
+
+
+
 function change_item_xy(item_id, itemX, itemY) {
     now_eq_item_id = item_id;
+    $("#eq_title").text('EQ_'+(parseInt(item_id)+1));
     var list = window.external.get_dataX();
     var listx = eval("(" + list + ")");
     $("#eq_gain_slider_num").val(Math.floor(itemY));

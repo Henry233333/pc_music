@@ -137,7 +137,11 @@
 
         }
     </style>
-
+    <script>
+        window.onload = function () {
+            window.external.eq_creates();
+        };
+    </script>
 </head>
 <body style="background-color:black;" >
 <div class="out_eq_main">
@@ -149,7 +153,7 @@
                 <input type="checkbox" class="check_style" onchange="change_enable(this)" checked="checked" id="EQ_enable">
                 <label for="EQ_enable" class="green"></label>
                 <label class="input_label">on</label>
-                <label class="input_label" style="margin-left: 30px">EQ</label>
+                <label class="input_label" style="margin-left: 30px" id="eq_title">EQ_1</label>
                 <select style="margin-left: 30px" onchange="change_filter_type(this)" id="filter_type">
                     <option value="0">AP1</option>
                     <option value="1">LP1</option>
@@ -177,7 +181,6 @@
                 var item_status_7 = {"enable":1,"filter_type":9};
                 var item_status_8 = {"enable":1,"filter_type":9};
                 function change_enable(e) {
-
                     if ($(e).is(":checked")) {
                         if(now_eq_item_id==0){item_status_1.enable = 1};
                         if(now_eq_item_id==1){item_status_2.enable = 1};
