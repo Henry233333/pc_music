@@ -132,19 +132,117 @@
             left: 400px;
 
         }
+        .eq_button{
+            width: 60px;
+            height: 30px;
+            border: none;
+            border-radius: 10px;
+            margin-left: 10px;
+            background-color: rgba(156, 156, 156, 0.65);
+            color: white;
+        }
+        .mod{
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            background-color: #c0c0c0;
+            z-index: 50;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
     </style>
     <script>
         window.onload = function () {
             window.external.eq_creates();
         };
+        function resetPage() {
+            window.location.reload();
+        }
+        function bypassPage() {
+            if($("#mod_status").val()==0){
+            $(".mod").css({"display":"block"});
+                $("#mod_status").val(1)
+            }else{
+                $(".mod").css({"display":"none"});
+                $("#mod_status").val(0)
+            }
+        }
     </script>
 </head>
 <body>
+<button style="z-index: 1000;position: absolute;top: 28px;left: 30px" class="eq_button" onclick="bypassPage()">Bypass</button>
+<div class="mod">
+    <input type="hidden" id="mod_status" value="0">
+</div>
 <div class="out_eq_main">
-
     <div class="left">
         <div style="width: 400px">
-            <span style="height: 30px;position: relative;left: 0px">
+            <span style="height: 30px;margin-bottom:20px;position: relative;left: 0px;">
+                <button class="eq_button" style="position: relative;left: 60px" class="eq_button" onclick="resetPage()">Reset</button>
+            </span>
+            <div style="display: flex;flex-direction: row;margin-top: 20px">
+                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
+                    <div class="slider_box_left" style="width: 50px">
+                        <ul class="output_slider4_ul">
+                            <li>+18&nbsp;-</li>
+                            <li>+9&nbsp;&nbsp;&nbsp;-</li>
+                            <li>0&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-9&nbsp;&nbsp;&nbsp;-</li>
+                            <li>-18&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right" style="width: 40px;">
+                        <input id="eq_gain_slider" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">dB</label><br>
+                        <input type="number" value="0" id="eq_gain_slider_num" class="slider_number_in"><br>
+                        <label style="color: #00b8ef">增益</label>
+                    </div>
+                </div>
+                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
+                    <div class="slider_box_left" style="width: 50px">
+                        <ul class="output_slider2_ul">
+                            <li>20k&nbsp;&nbsp;&nbsp;-</li>
+                            <li>1k&nbsp;&nbsp;&nbsp;-</li>
+                            <li>150&nbsp;&nbsp;&nbsp;-</li>
+                            <li>20&nbsp;&nbsp;&nbsp;-</li>
+                            <li>10&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right" style="width: 40px;">
+                        <input id="eq_freq_slider" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">Hz</label><br>
+                        <input type="number" value="200" id="eq_freq_slider_num" class="slider_number_in"><br>
+                        <label style="color: #00b8ef">频率</label>
+                    </div>
+                </div>
+                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
+                    <div class="slider_box_left" style="width: 50px">
+                        <ul class="output_slider6_ul">
+                            <li>48&nbsp;&nbsp;&nbsp;-</li>
+                            <li>36&nbsp;&nbsp;&nbsp;-</li>
+                            <li>24&nbsp;&nbsp;&nbsp;-</li>
+                            <li>12&nbsp;&nbsp;&nbsp;-</li>
+                            <li>0.1&nbsp;&nbsp;&nbsp;-</li>
+                        </ul>
+                    </div>
+                    <div class="slider_box_right" style="width: 40px;">
+                        <input id="eq_q_slider" type="hidden" onchange="getVal(this)"/>
+                    </div>
+                    <div class="slider_box_bottom">
+                        <label style="color: white">&nbsp;</label><br>
+                        <input type="number" value="1" id="eq_q_slider_num" class="slider_number_in"><br>
+                        <label style="color: #00b8ef">Q值</label>
+                    </div>
+                </div>
+            </div>
+            <!--enable and types-->
+            <span style="height: 30px;position: relative;left: 0px;top: 20px">
                 <label class="input_label">off</label>
                 <input type="checkbox" class="check_style" onchange="change_enable(this)" checked="checked" id="EQ_enable">
                 <label for="EQ_enable" class="green"></label>
@@ -211,65 +309,6 @@
                 }
 
             </script>
-            <div style="display: flex;flex-direction: row;margin-top: 20px">
-                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
-                    <div class="slider_box_left" style="width: 50px">
-                        <ul class="output_slider4_ul">
-                            <li>+18&nbsp;-</li>
-                            <li>+9&nbsp;&nbsp;&nbsp;-</li>
-                            <li>0&nbsp;&nbsp;&nbsp;-</li>
-                            <li>-9&nbsp;&nbsp;&nbsp;-</li>
-                            <li>-18&nbsp;&nbsp;&nbsp;-</li>
-                        </ul>
-                    </div>
-                    <div class="slider_box_right" style="width: 40px;">
-                        <input id="eq_gain_slider" type="hidden" onchange="getVal(this)"/>
-                    </div>
-                    <div class="slider_box_bottom">
-                        <label style="color: white">dB</label><br>
-                        <input type="number" value="0" id="eq_gain_slider_num" class="slider_number_in"><br>
-                        <label style="color: #00b8ef">增益</label>
-                    </div>
-                </div>
-                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
-                    <div class="slider_box_left" style="width: 50px">
-                        <ul class="output_slider2_ul">
-                            <li>20k&nbsp;&nbsp;&nbsp;-</li>
-                            <li>1k&nbsp;&nbsp;&nbsp;-</li>
-                            <li>150&nbsp;&nbsp;&nbsp;-</li>
-                            <li>20&nbsp;&nbsp;&nbsp;-</li>
-                            <li>10&nbsp;&nbsp;&nbsp;-</li>
-                        </ul>
-                    </div>
-                    <div class="slider_box_right" style="width: 40px;">
-                        <input id="eq_freq_slider" type="hidden" onchange="getVal(this)"/>
-                    </div>
-                    <div class="slider_box_bottom">
-                        <label style="color: white">Hz</label><br>
-                        <input type="number" value="200" id="eq_freq_slider_num" class="slider_number_in"><br>
-                        <label style="color: #00b8ef">频率</label>
-                    </div>
-                </div>
-                <div class="input_slider_box" style="width: 120px;margin-right: 10px;">
-                    <div class="slider_box_left" style="width: 50px">
-                        <ul class="output_slider6_ul">
-                            <li>48&nbsp;&nbsp;&nbsp;-</li>
-                            <li>36&nbsp;&nbsp;&nbsp;-</li>
-                            <li>24&nbsp;&nbsp;&nbsp;-</li>
-                            <li>12&nbsp;&nbsp;&nbsp;-</li>
-                            <li>0.1&nbsp;&nbsp;&nbsp;-</li>
-                        </ul>
-                    </div>
-                    <div class="slider_box_right" style="width: 40px;">
-                        <input id="eq_q_slider" type="hidden" onchange="getVal(this)"/>
-                    </div>
-                    <div class="slider_box_bottom">
-                        <label style="color: white">&nbsp;</label><br>
-                        <input type="number" value="1" id="eq_q_slider_num" class="slider_number_in"><br>
-                        <label style="color: #00b8ef">Q值</label>
-                    </div>
-                </div>
-            </div>
         </div>
         <script>
 
@@ -379,6 +418,7 @@
 
         </script>
     </div>
+    <!--eq_画图部分-->
     <div class="canvas_main">
         <canvas id="eq_canvas" width="2000" height="480">
         </canvas>

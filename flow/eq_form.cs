@@ -23,15 +23,14 @@ namespace flow
        
         private void eq_form_Load(object sender, EventArgs e)
         {
-            eq_creates();
+            Console.Write(alluse_data.create_net_create);
         }
-        
-        public void get_eq(string info, string pagekey)
+        string modName = "";
+        public void get_eq(string info,string lowcasename)
         {
 
-            Console.WriteLine(info);
+            modName = lowcasename;
             string pageinfo = info;
-            string pagekeys = pagekey;
             RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION", true);
             if (key != null)
             {
@@ -71,7 +70,7 @@ namespace flow
 
         public IntPtr eq_create;
         //初始化
-        private void eq_creates()
+        public void eq_creates()
         {
             eq_create = mydll.effectRespCurv_create(8, 2000, 48000, 0);
             mydll.effectRespCurv_add_bqf(eq_create, 0);
@@ -148,5 +147,6 @@ namespace flow
             Console.Write(point_x);
             return point_x;
         }
+        //eq界面设置参数方法
     }
 }

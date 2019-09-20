@@ -10,12 +10,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Runtime.InteropServices;
+
 
 
 namespace flow
 {
     [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
     [System.Runtime.InteropServices.ComVisible(true)]
+
     public partial class Form1 : Form 
     {
         
@@ -25,7 +28,8 @@ namespace flow
             InitializeComponent();
 
         }
-       
+        
+        
         private void load(object sender, EventArgs e)
         {
             comboBox1.SelectedIndex = 1;
@@ -45,10 +49,10 @@ namespace flow
             
             string pathName = System.AppDomain.CurrentDomain.BaseDirectory + "assets\\index\\index.html"; 
             this.webBrowser1.ObjectForScripting = this;
-            webBrowser1.Navigate(pathName);
+            webBrowser1.Navigate(pathName);  
 
         }
-        
+
         private void button2_Click(object sender, EventArgs e)
         {
             out_form form2 = new out_form();
@@ -72,7 +76,7 @@ namespace flow
 
         private void button4_Click(object sender, EventArgs e)
         {
-            eq_creates();
+           
             string pathName = System.AppDomain.CurrentDomain.BaseDirectory + "assets\\index\\index_eq.html";
             this.webBrowser1.ObjectForScripting = this;
             webBrowser1.Navigate(pathName);
@@ -111,9 +115,8 @@ namespace flow
             //this.webBrowser1.Document.InvokeScript("winform_to_js");
 
         //js 调用的 winform 方法
-        public void out_window(string name, string pagekey)
+        public void out_window(string name)
         {
-            Console.WriteLine(name);
             string LowCaseName = name.ToLower();
             if (LowCaseName == "input" || LowCaseName == "output" || LowCaseName == "asrc" || LowCaseName == "nlp" || LowCaseName == "mixer" || LowCaseName == "deq" || LowCaseName == "demux" )
             {
@@ -122,13 +125,13 @@ namespace flow
             else if (LowCaseName == "peq")
             {
                 eq_form form1 = new eq_form();
-                form1.get_eq("out_window\\" + LowCaseName + ".html", pagekey);
+                form1.get_eq("out_window\\" + LowCaseName + ".html", LowCaseName); 
                 form1.Show();
             }
             else
             {
                 out_form form2 = new out_form();
-                form2.getdata("out_window\\" + LowCaseName + ".html", pagekey);
+                form2.getdata("out_window\\" + LowCaseName + ".html", LowCaseName);
                 form2.Show();
             }
         }
@@ -137,12 +140,12 @@ namespace flow
         {
 
         }
-        public void get_eq(string info, string pagekey)
+        public void get_eq(string info)
         {
 
             Console.WriteLine(info);
             string pageinfo = info;
-            string pagekeys = pagekey;
+         
             RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION", true);
             if (key != null)
             {
@@ -182,7 +185,7 @@ namespace flow
 
         public IntPtr eq_create;
         //初始化
-        private void eq_creates()
+        public void eq_creates()
         {
             eq_create = mydll.effectRespCurv_create(8, 2000, 48000, 0);
             mydll.effectRespCurv_add_bqf(eq_create, 0);
@@ -250,7 +253,7 @@ namespace flow
         public double get_ponitX(float freq)
         {
             double point_x = 0;
-            point_x = (Math.Log10(freq) - 1) * 2000 / 3.301;
+            point_x = (Math.Log10(freq) - 1) *  2000 / 3.301;
             Console.Write(point_x);
             return point_x;
         }

@@ -45,6 +45,10 @@
         label{
             color: white;
         }
+        .change_mute{
+            background-color: #4954ff;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -53,14 +57,15 @@
             <span style="height: 30px;">
                 <label class="input_label" style="margin-left: 30px">Gain</label>&nbsp;&nbsp;
                 <label class="input_label">off</label>
-                <input type="checkbox" id="out_gain_enable">
+                <input type="checkbox" id="out_gain_enable" onclick="change_enable(this)">
                 <label for="out_gain_enable" class="green"></label>
                 <label class="input_label">on</label>
             </span>
         </div>
         <div class="input_slider_box" style="margin-left: 100px">
             <div style="width: 100px;height: 40px;text-align: center">
-                <button class="Gain_button">Mute</button>
+                <input id="mute_status" type="hidden" value="0"/>
+                <button class="Gain_button" onclick="change_mute(this)">Mute</button>
             </div>
             <div class="slider_box_left" style="height: 360px">
                 <ul class="out_gain_slider3_ul">
@@ -95,7 +100,7 @@
 
     function getVal(e) {
         $(e).parents(".slider_box_right").siblings(".slider_box_bottom").children("input").val(e.value);
-        console.log(e.value);
+        gain_value(e.value);
     }
     function create_slider(id,ticks,ticks_positions,value) {
        return  new Slider(id, {
@@ -112,9 +117,44 @@
     }
     $(function () {
         $("#out_gain_slider_num").change(function () {
-            slider2.setValue(this.value);
+            if(this.value<=24&&this.value>=-60){
+                slider2.setValue(this.value);
+                gain_value(this.value);
+            }
         });
     });
+    function change_enable(e) {
+        var ischecked = 0;
+        if($(e).is(":checked")){
+            ischecked= 1 ;
+        }
+        else{
+            ischecked=0;
+        }
+        gain_enable(ischecked);
+    }
+    function change_mute(e) {
+        var isMute = $("#mute_status").val();
+        if(isMute == 0){
+            $(e).addClass("change_mute");
+            $("#mute_status").val(1);
+        }
+        else{
+            $(e).removeClass("change_mute");
+            $("#mute_status").val(0);
+        }
+        gain_mute();
+    }
+    function gain_enable(ischecked) {
+        var isEnable = window.external.set_gain_enable(ischecked);
+    }
+    function gain_value(value) {
+        var isValue = window.external.set_gain_value(value);
+    }
+    function gain_mute() {
+        var mute = $("#mute_status").val();
+        var isMute = window.external.set_gain_mute(mute);
+    }
 </script>
 </body>
 </html>

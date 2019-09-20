@@ -132,13 +132,28 @@
             <input type="number" readonly id="delay_slider_num">
         </div>
         <div>
-            <button class="delay_enable">Enable</button>
+            <input type="hidden" id ="delay_enable" value="0"/>
+            <button class="delay_enable" id="delay_enable_btn" onclick="change_status()">Enable</button>
         </div>
-
+        <script>
+            function change_status() {
+                var status = $("#delay_enable").val();
+                if(status==="0"){
+                    $("#delay_enable_btn").text("Disable");
+                    $("#delay_enable").val("1");
+                }
+                else{
+                    $("#delay_enable_btn").text("Enable");
+                    $("#delay_enable").val("0");
+                }
+                set_enable();
+            }
+        </script>
     </div>
 </div>
 </body>
 <script>
+    var delay_value = 0;
     $(function () {
         $("#delay_slider").slider({
             range: "min",
@@ -147,9 +162,18 @@
             max: 12,
             slide: function (event, ui) {
                 $("#delay_slider_num").val(ui.value);
+                set_time();
             }
         });
         $("#delay_slider_num").val($("#delay_slider").slider("value"));
     });
+    function set_enable() {
+        var delay_enable = $("#delay_enable").val();
+        var isSet = window.external.set_delay_enable(delay_enable);
+    }
+    function set_time() {
+        var delay_time =  $("#delay_slider_num").val();
+        var isSet = window.external.set_delay_time(delay_time);
+    }
 </script>
 </html>

@@ -37,7 +37,7 @@
         <div>
             <span style="height: 30px;position: relative;left: 100px">
                 <label class="input_label">off</label>
-                <input type="checkbox" class="check_style" id="drc_left">
+                <input type="checkbox" class="check_style" id="drc_left" onclick="change_enable(this)">
                 <label for="drc_left" class="green"></label>
                 <label class="input_label">on</label>&nbsp;&nbsp;&nbsp;
                 <label class="input_label">Compress</label>
@@ -174,14 +174,28 @@
 
         function setVal(e) {
             var id = $(e).attr('id');
-            if(id=="drc_slider1_num"){slider1.setValue(e.value)}
-            else if(id=="drc_slider2_num"){slider2.setValue(e.value)}
-            else if(id=="drc_slider3_num"){slider3.setValue(e.value)}
-            else if(id=="drc_slider4_num"){slider4.setValue(e.value)}
+            if(id=="drc_slider1_num"){
+                if(e.value<=100&&e.value>=0)
+                slider1.setValue(e.value);
+            }
+            else if(id=="drc_slider2_num"){
+                if(e.value<=5000&&e.value>=10)
+                slider2.setValue(e.value);
+            }
+            else if(id=="drc_slider3_num"){
+                if(e.value<=0&&e.value>=-46)
+                slider3.setValue(e.value);
+            }
+            else if(id=="drc_slider4_num"){
+                if(e.value<=127&&e.value>=1)
+                slider4.setValue(e.value);
+            }
+            compr_value();
         }
 
         function getVal(e) {
             $(e).parents(".slider_box_right").siblings(".slider_box_bottom").children("input").val(e.value);
+            compr_value();
         }
 
         function create_slider(id, ticks, ticks_positions, value, step) {
@@ -200,7 +214,27 @@
                 reversed: true,
             });
         }
-
+        var ischecked = 0;
+        function change_enable(e) {
+            if($(e).is(":checked")){
+                ischecked= 1 ;
+            }
+            else{
+                ischecked=0;
+            }
+            compr_enable();
+        }
+        function compr_enable() {
+            var isEnable = window.external.set_compr_enable(ischecked);
+            alert(isEnable);
+        }
+        function compr_value() {
+            var attack = $("#drc_slider1_num").val();
+            var release = $("#drc_slider2_num").val();
+            var threshol = $("#drc_slider3_num").val();
+            var ratio = $("#drc_slider4_num").val();
+            var isValue = window.external.set_compr_value(ischecked,attack,release,threshol,ratio);
+        }
     </script>
 </body>
 </html>

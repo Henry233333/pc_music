@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="alluse_data.cs" />
+    <Compile Include="audioaef_dll.cs" />
+    <Compile Include="audioaef_net_dll.cs" />
     <Compile Include="eq_form.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Selectable Ports</title>
-    <meta name="description" content="Support selecting ports within nodes." />
+    <meta name="description" content="Support selecting ports within nodes."/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Copyright 1998-2019 by Northwoods Software Corporation. -->
 
@@ -17,7 +17,7 @@
                 $(go.Diagram, "myDiagramDiv",
                     {
                         // For this sample, automatically show the state of the diagram's model on the page
-                        "ModelChanged": function(e) {
+                        "ModelChanged": function (e) {
                             if (e.isTransactionFinished) showModel();
                         },
                         "undoManager.isEnabled": true
@@ -28,7 +28,7 @@
 
             function makeItemTemplate(leftside) {
                 return $(go.Panel, "Auto",
-                    { margin: new go.Margin(1, 0) },  // some space between ports
+                    {margin: new go.Margin(1, 0)},  // some space between ports
                     $(go.Shape,
                         {
                             name: "SHAPE",
@@ -49,7 +49,7 @@
                         { // allow the user to select items -- the background color indicates whether "selected"
                             isActionable: true,
                             //?? maybe this should be more sophisticated than simple toggling of selection
-                            click: function(e, tb) {
+                            click: function (e, tb) {
                                 var shape = tb.panel.findObject("SHAPE");
                                 if (shape !== null) {
                                     // don't record item selection changes
@@ -70,47 +70,50 @@
 
             myDiagram.nodeTemplate =
                 $(go.Node, "Spot",
-                    { selectionAdorned: false },
-                    { locationSpot: go.Spot.Center, locationObjectName: "BODY" },
+                    {selectionAdorned: false},
+                    {locationSpot: go.Spot.Center, locationObjectName: "BODY"},
                     new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
                     $(go.Panel, "Auto",
-                        { name: "BODY" },
+                        {name: "BODY"},
                         $(go.Shape, "RoundedRectangle",
-                            { stroke: "white", strokeWidth: 2, fill: "#2575d3" },
-                            new go.Binding("stroke", "isSelected", function(b) { return b ? SelectedBrush : UnselectedBrush; }).ofObject()),
+                            {stroke: "white", strokeWidth: 2, fill: "#2575d3"},
+                            new go.Binding("stroke", "isSelected", function (b) {
+                                return b ? SelectedBrush : UnselectedBrush;
+                            }).ofObject()),
                         $(go.Panel, "Vertical",
-                            { margin: 6 },
+                            {margin: 6},
                             $(go.TextBlock,
                                 new go.Binding("text", "name"),
-                                { alignment: go.Spot.Center,stroke: "white",margin: new go.Margin(10) }) 
-                               
+                                {alignment: go.Spot.Center, stroke: "white", margin: new go.Margin(10)})
+
                             /*,
                             $(go.Picture, "",
                                 { width: 30, height: 45, margin: new go.Margin(10, 10) })*/
                         )
                     ),
                     $(go.Panel, "Vertical",
-                        { name: "LEFTPORTS", alignment: new go.Spot(0, 0.5, 0, 7) },
+                        {name: "LEFTPORTS", alignment: new go.Spot(0, 0.5, 0, 7)},
                         new go.Binding("itemArray", "inservices"),
-                        { itemTemplate: makeItemTemplate(true) }
+                        {itemTemplate: makeItemTemplate(true)}
                     ),
                     $(go.Panel, "Vertical",
-                        { name: "RIGHTPORTS", alignment: new go.Spot(1, 0.5, 0, 7) },
+                        {name: "RIGHTPORTS", alignment: new go.Spot(1, 0.5, 0, 7)},
                         new go.Binding("itemArray", "outservices"),
-                        { itemTemplate: makeItemTemplate(false) }
+                        {itemTemplate: makeItemTemplate(false)}
                     )
                 );
-               
+
             myDiagram.linkTemplate =
                 $(go.Link,
-                    { routing: go.Link.Orthogonal, corner: 10, toShortLength: -3 },
-                    { relinkableFrom: true, relinkableTo: true, reshapable: true, resegmentable: true },
-                    $(go.Shape, { stroke: "gray", strokeWidth: 2.5 })
+                    {routing: go.Link.Orthogonal, corner: 10, toShortLength: -3},
+                    {relinkableFrom: true, relinkableTo: true, reshapable: true, resegmentable: true},
+                    $(go.Shape, {stroke: "gray", strokeWidth: 2.5})
                 );
-            myDiagram.addDiagramListener("ObjectDoubleClicked", function(e,obj) {
+            myDiagram.addDiagramListener("ObjectDoubleClicked", function (e, obj) {
                 var name = e.zs.Pb;
                 out_window(name);
-            });    
+            });
+
             function findAllSelectedItems() {
                 var items = [];
                 for (var nit = myDiagram.nodes; nit.next();) {
@@ -139,15 +142,15 @@
 
             // Override the standard CommandHandler deleteSelection and canDeleteSelection behavior.
             // If there are any selected items, delete them instead of deleting any selected nodes or links.
-            
-            myDiagram.commandHandler.canDeleteSelection = function() {
+
+            myDiagram.commandHandler.canDeleteSelection = function () {
                 // true if there are any selected deletable nodes or links,
                 // or if there are any selected items within nodes
                 return go.CommandHandler.prototype.canDeleteSelection.call(myDiagram.commandHandler) ||
                     findAllSelectedItems().length > 0;
             };
 
-            myDiagram.commandHandler.deleteSelection = function() {
+            myDiagram.commandHandler.deleteSelection = function () {
                 var items = findAllSelectedItems();
                 if (items.length > 0) {  // if there are any selected items, delete them
                     myDiagram.startTransaction("delete items");
@@ -176,23 +179,23 @@
                     {
                         nodeTemplateMap: myDiagram.nodeTemplateMap,  // share the templates used by myDiagram
                         model: new go.GraphLinksModel([  // specify the contents of the Palette
-                            {name: "INPUT", outservices: [{ name: "out" }]},
-                            {name: "OUTPUT", inservices: [{ name: "in" }]},
-                            {name: "ASRC", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "DELAY", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "NLP", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "GAIN", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "MIXER", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "NOISEGATE", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "RMS-LEVEL", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "PEAK-LEVEL", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "XOVER", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "COMPR", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "LIMITER", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "DEQ", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "LDEQ", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "FIR", inservices: [{ name: "in" }], outservices: [{ name: "out" }]},
-                            {name: "PEQ", inservices: [{ name: "in" }], outservices: [{ name: "out" }]}
+                            {name: "INPUT", outservices: [{name: "out"}]},
+                            {name: "OUTPUT", inservices: [{name: "in"}]},
+                            {name: "ASRC", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "DELAY", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "NLP", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "GAIN", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "MIXER", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "NOISEGATE", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "RMS-LEVEL", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "PEAK-LEVEL", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "XOVER", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "COMPR", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "LIMITER", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "DEQ", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "LDEQ", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "FIR", inservices: [{name: "in"}], outservices: [{name: "out"}]},
+                            {name: "PEQ", inservices: [{name: "in"}], outservices: [{name: "out"}]}
                         ])
                     });
 
@@ -211,27 +214,32 @@
                             { from: 1, fromPort: "o1", to: 2, toPort: "s2" }
                         ]*/
                     });
-
+            load();
             showModel();
         }
+
         function showModel() {
             document.getElementById("mySavedModel").value = myDiagram.model.toJson();
         }
-        function save() {  
+
+        function save() {
             document.getElementById("mySavedModel").value = myDiagram.model.toJson();
             myDiagram.isModified = false;
             var testValue = document.getElementById("mySavedModel").value;
             var text = JSON.parse("" + myDiagram.model.toJson() + "");
             //line(myDiagram.model.toJson());
-            
+
             console.log(text.linkDataArray);
             console.log(text.nodeDataArray);
             //调用winform方法
-            window.external.xmpf(testValue);
+            //window.external.xmpf(testValue);
+            console.log(testValue);
         }
+
         function load() {
             myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
         }
+
         function clearsavemodel() {
             document.getElementById("mySavedModel").value = "{ \"class\": \"GraphLinksModel\",\n" +
                 "  \"copiesArrays\": true,\n" +
@@ -242,18 +250,54 @@
                 "  \"linkDataArray\": []}";
             load();
         }
-       function out_window(name) {
-            if(name!=""&&name!=undefined){
+
+        function out_window(name) {
+            if (name != "" && name != undefined) {
                 window.external.out_window(name);
             }
-       }
+        }
     </script>
 </head>
 <body onload="init()" style="background-color:black">
 <div id="sample" style="display: flex;flex-direction: row">
     <div id="myPaletteDiv" style="width: 300px;height:600px; margin-right: 2px; border: solid 1px black"></div>
     <div id="myDiagramDiv" style="border: solid 1px black; width:100%; height:600px"></div>
-    <textarea id="mySavedModel" style="width:100%;height:300px;display: none;"></textarea>
+    <textarea id="mySavedModel" style="width:100%;height:300px;display: none;">
+        { "class": "GraphLinksModel",
+  "copiesArrays": true,
+  "copiesArrayObjects": true,
+  "linkFromPortIdProperty": "fromPort",
+  "linkToPortIdProperty": "toPort",
+  "nodeDataArray": [
+{"name":"INPUT", "outservices":[ {"name":"out"} ], "key":-1, "loc":"-522.0874938964844 -95"},
+{"name":"OUTPUT", "inservices":[ {"name":"in"} ], "key":-2, "loc":"331.9125061035156 -105"},
+{"name":"DELAY", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-4, "loc":"-290.0874938964844 -236"},
+{"name":"GAIN", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-6, "loc":"-137.08749389648438 -241"},
+{"name":"NOISEGATE", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-8, "loc":"31.912506103515625 -241"},
+{"name":"RMS-LEVEL", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-9, "loc":"-268.0874938964844 -109"},
+{"name":"PEAK-LEVEL", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-10, "loc":"42.912506103515625 -114"},
+{"name":"XOVER", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-11, "loc":"-285.0874938964844 -2"},
+{"name":"COMPR", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-12, "loc":"-113.58749389648438 -7"},
+{"name":"LIMITER", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-13, "loc":"50.912506103515625 -15"},
+{"name":"LDEQ", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-15, "loc":"-288.0874938964844 107"},
+{"name":"FIR", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-16, "loc":"-131.58749389648438 106.60000610351562"},
+{"name":"PEQ", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-17, "loc":"50.912506103515625 104.60000610351562"}
+ ],
+  "linkDataArray": [
+{"from":-1, "to":-4, "fromPort":"out", "toPort":"in"},
+{"from":-4, "to":-6, "fromPort":"out", "toPort":"in"},
+{"from":-6, "to":-8, "fromPort":"out", "toPort":"in"},
+{"from":-8, "to":-9, "fromPort":"out", "toPort":"in"},
+{"from":-9, "to":-10, "fromPort":"out", "toPort":"in"},
+{"from":-10, "to":-11, "fromPort":"out", "toPort":"in"},
+{"from":-11, "to":-12, "fromPort":"out", "toPort":"in"},
+{"from":-12, "to":-13, "fromPort":"out", "toPort":"in"},
+{"from":-13, "to":-15, "fromPort":"out", "toPort":"in"},
+{"from":-15, "to":-16, "fromPort":"out", "toPort":"in"},
+{"from":-16, "to":-17, "fromPort":"out", "toPort":"in"},
+{"from":-17, "to":-2, "fromPort":"out", "toPort":"in"}
+ ]}
+    </textarea>
 </div>
 <div>
     <button id="SaveButton" onclick="save()" style="width: 100px;height: 50px;">Save</button>

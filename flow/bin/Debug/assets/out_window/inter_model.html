@@ -44,6 +44,7 @@
             resize: none;
         }
     </style>
+    <script src="js/jquery.min.js"></script>
 </head>
 <body style="background-color:black">
 <div class="inter_model_main">
@@ -70,11 +71,24 @@
         </legend>
         <div>
             <label>设备IP</label>
-            <input type="text" style="width: 200px" name="device_ip">
-            <button>查找设备</button>
+            <input type="text" style="width: 200px" name="device_ip" id="device_ip">
+            <button onclick="get_device_ip()">查找设备</button>
         </div>
     </fieldset>
 </div>
-
+<script>
+    function get_device_ip() {
+        var ip = $("#device_ip").val();
+        if(ip!==""&&ip!==undefined){
+            var isSearched = window.external.getDevice(ip);
+            if(isSearched === 1){
+                alert("已查找到设备，请关闭窗口！");
+            }
+        }
+        else{
+            alert("请输入设备IP");
+        }
+    }
+</script>
 </body>
 </html>
