@@ -295,6 +295,7 @@
                         if(now_eq_item_id==7){item_status_8.enable = 0};
                     }
 
+                    change_now_line(now_eq_item_id);
                 }
                 function change_filter_type(e) {
                     if(now_eq_item_id==0){item_status_1.filter_type = e.value};
@@ -305,7 +306,7 @@
                     if(now_eq_item_id==5){item_status_6.filter_type = e.value};
                     if(now_eq_item_id==6){item_status_7.filter_type = e.value};
                     if(now_eq_item_id==7){item_status_8.filter_type = e.value};
-
+                    change_now_line(now_eq_item_id);
                 }
 
             </script>
@@ -367,7 +368,17 @@
                 }
                 move_item(eq_id, freq, gain);
             }
-
+            function change_now_line(id) {
+                var gain = $("#eq_gain_slider_num").val();
+                var freq = $("#eq_freq_slider_num").val();
+                var q = $("#eq_q_slider_num").val();
+                var x = canvas.width;
+                var y = canvas.height;
+                context.clearRect(0, -y, x, 2 * y);
+                set_node_data(id, gain, q, freq);
+                get_form_eq_data(context);
+                get_node_line(id, context);
+            }
             function move_item(id, freq, gain) {
                 var Drag = document.getElementById(id);
                 var item_L = window.external.get_ponitX(freq) / 2;

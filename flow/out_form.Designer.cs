@@ -51,6 +51,7 @@
             this.MinimizeBox = false;
             this.Name = "out_form";
             this.Text = "SONA_AI";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.out_form_FormClosing);
             this.Load += new System.EventHandler(this.out_form_Load);
             this.ResumeLayout(false);
 

@@ -3,25 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="a7d9c8e0-a547-46a6-bcb4-14207d3c1520" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../../flow.v11.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../flow.v11.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Form1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Properties/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Properties/AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/index_eq.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/index_eq.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/compr.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/compr.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/delay.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/delay.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/gain.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/gain.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/inter_model.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/inter_model.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/limiter.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/limiter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/noisegate.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/noisegate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/peak-level.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/peak-level.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out_window/peq.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/peq.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../eq_form.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../eq_form.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../flow.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../../flow.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.csproj.GenerateResource.Cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.csproj.GenerateResource.Cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../out_form.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../out_form.Designer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../out_form.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../out_form.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -109,7 +99,9 @@
       <workItem from="1568689144460" duration="11320000" />
       <workItem from="1568768899347" duration="11848000" />
       <workItem from="1568854727675" duration="3988000" />
-      <workItem from="1568941717657" duration="13621000" />
+      <workItem from="1568941717657" duration="14424000" />
+      <workItem from="1569053634979" duration="1937000" />
+      <workItem from="1569115909736" duration="8675000" />
     </task>
     <task id="LOCAL-00001" summary="items types enable">
       <created>1568613009490</created>
@@ -132,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568711121948</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="模块接口参数设置，与虚拟设备联调">
+      <created>1568969691932</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1568969691932</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +154,7 @@
     <MESSAGE value="items types enable" />
     <MESSAGE value="窗口调整" />
     <MESSAGE value="bug调整" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug调整" />
+    <MESSAGE value="模块接口参数设置，与虚拟设备联调" />
+    <option name="LAST_COMMIT_MESSAGE" value="模块接口参数设置，与虚拟设备联调" />
   </component>
 </project>

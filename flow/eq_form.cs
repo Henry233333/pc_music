@@ -102,10 +102,16 @@ namespace flow
 
         public int set_node_dataY(int id,int enable,int type , float gain, float q, float freq)
         {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = "peq-L0";
+             int eq_en = audioaef_net_dll.net_audioaef_set_peq_enable(ins, name, 1);
+             Console.WriteLine(eq_en);
             try
             {  
                  mydll.effectRespCurv_set_bqf_enable(eq_create, id, enable);
-                 mydll.effectRespCurv_set_bqf(eq_create, id, enable, type, gain, q, freq);  
+                 mydll.effectRespCurv_set_bqf(eq_create, id, enable, type, gain, q, freq);
+                 int is_eq = audioaef_net_dll.net_audioaef_set_peq_bqf(ins, name, id, enable, type, gain,q,freq);
+                 Console.WriteLine(is_eq);
               
             }
             catch (Exception)

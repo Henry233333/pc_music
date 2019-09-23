@@ -6,7 +6,7 @@
     <meta name="description" content="Support selecting ports within nodes."/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Copyright 1998-2019 by Northwoods Software Corporation. -->
-
+    <script src="js/jquery.min.js"></script>
     <script src="js/go.js"></script>
     <script id="code">
         function init() {
@@ -214,8 +214,51 @@
                             { from: 1, fromPort: "o1", to: 2, toPort: "s2" }
                         ]*/
                     });
+
+            set_models_text();
             load();
             showModel();
+        }
+
+        function set_models_text() {
+            var item = window.external.get_index_flow_item();
+            var line = window.external.get_index_flow_line();
+            var flow_text = eval("(" + item + ")");
+            var flow_line = eval("(" + line + ")");
+            var text_all = '{ "class": "GraphLinksModel",\n' +
+                '  "copiesArrays": true,\n' +
+                '  "copiesArrayObjects": true,\n' +
+                '  "linkFromPortIdProperty": "fromPort",\n' +
+                '  "linkToPortIdProperty": "toPort",\n' +
+                '  "nodeDataArray": [';
+            for (var i = 0; i < flow_text.length; i++) {
+                if (flow_text[i].name == "INPUT") {
+                    text_all += '{"name":"' + flow_text[i].name + '","outservices":[{"name":"out"}],"key":"' + flow_text[i].key + '","loc":"' + flow_text[i].loc + '"}';
+                    if (i != flow_text.length-1) {
+                        text_all += ',';
+                    }
+                } else if (flow_text[i].name == "OUTPUT") {
+                    text_all += '{"name":"' + flow_text[i].name + '","inservices":[{"name":"in"}],"key":"' + flow_text[i].key + '","loc":"' + flow_text[i].loc + '"}';
+                    if (i != flow_text.length-1) {
+                        text_all += ',';
+                    }
+                } else {
+                    text_all += '{"name":"' + flow_text[i].name + '","inservices":[{"name":"in"}],"outservices":[{"name":"out"}],"key":"' + flow_text[i].key + '","loc":"' + flow_text[i].loc + '"}';
+                    if (i != flow_text.length-1) {
+                        text_all += ',';
+                    }
+                }
+            }
+            text_all += '],"linkDataArray": [';
+            for (var i = 0; i < flow_line.length; i++) {
+                text_all += '{"from":"' + flow_line[i].from + '","to":"' + flow_line[i].to + '","fromPort":"out", "toPort":"in"}';
+                if (i != flow_line.length-1) {
+                    text_all += ',';
+                }
+            }
+            text_all += ']}';
+            $("#mySavedModel").html(text_all);
+
         }
 
         function showModel() {
@@ -257,46 +300,14 @@
             }
         }
     </script>
+
 </head>
 <body onload="init()" style="background-color:black">
 <div id="sample" style="display: flex;flex-direction: row">
     <div id="myPaletteDiv" style="width: 300px;height:600px; margin-right: 2px; border: solid 1px black"></div>
     <div id="myDiagramDiv" style="border: solid 1px black; width:100%; height:600px"></div>
     <textarea id="mySavedModel" style="width:100%;height:300px;display: none;">
-        { "class": "GraphLinksModel",
-  "copiesArrays": true,
-  "copiesArrayObjects": true,
-  "linkFromPortIdProperty": "fromPort",
-  "linkToPortIdProperty": "toPort",
-  "nodeDataArray": [
-{"name":"INPUT", "outservices":[ {"name":"out"} ], "key":-1, "loc":"-522.0874938964844 -95"},
-{"name":"OUTPUT", "inservices":[ {"name":"in"} ], "key":-2, "loc":"331.9125061035156 -105"},
-{"name":"DELAY", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-4, "loc":"-290.0874938964844 -236"},
-{"name":"GAIN", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-6, "loc":"-137.08749389648438 -241"},
-{"name":"NOISEGATE", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-8, "loc":"31.912506103515625 -241"},
-{"name":"RMS-LEVEL", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-9, "loc":"-268.0874938964844 -109"},
-{"name":"PEAK-LEVEL", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-10, "loc":"42.912506103515625 -114"},
-{"name":"XOVER", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-11, "loc":"-285.0874938964844 -2"},
-{"name":"COMPR", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-12, "loc":"-113.58749389648438 -7"},
-{"name":"LIMITER", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-13, "loc":"50.912506103515625 -15"},
-{"name":"LDEQ", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-15, "loc":"-288.0874938964844 107"},
-{"name":"FIR", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-16, "loc":"-131.58749389648438 106.60000610351562"},
-{"name":"PEQ", "inservices":[ {"name":"in"} ], "outservices":[ {"name":"out"} ], "key":-17, "loc":"50.912506103515625 104.60000610351562"}
- ],
-  "linkDataArray": [
-{"from":-1, "to":-4, "fromPort":"out", "toPort":"in"},
-{"from":-4, "to":-6, "fromPort":"out", "toPort":"in"},
-{"from":-6, "to":-8, "fromPort":"out", "toPort":"in"},
-{"from":-8, "to":-9, "fromPort":"out", "toPort":"in"},
-{"from":-9, "to":-10, "fromPort":"out", "toPort":"in"},
-{"from":-10, "to":-11, "fromPort":"out", "toPort":"in"},
-{"from":-11, "to":-12, "fromPort":"out", "toPort":"in"},
-{"from":-12, "to":-13, "fromPort":"out", "toPort":"in"},
-{"from":-13, "to":-15, "fromPort":"out", "toPort":"in"},
-{"from":-15, "to":-16, "fromPort":"out", "toPort":"in"},
-{"from":-16, "to":-17, "fromPort":"out", "toPort":"in"},
-{"from":-17, "to":-2, "fromPort":"out", "toPort":"in"}
- ]}
+
     </textarea>
 </div>
 <div>

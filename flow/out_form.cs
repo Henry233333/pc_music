@@ -340,8 +340,14 @@ namespace flow
             }
             return 0;
         }
+
+        
         //ldeq界面方法
         //fir界面方法
-        
+        private void out_form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           
+        }
     }
+
 }

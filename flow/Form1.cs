@@ -262,8 +262,15 @@ namespace flow
         {
             mydll.effectRespCurv_destroy(eq_create);
         }
-       
-       
+
+        public string get_index_flow_item() {
+            return alluse_data.flow_item();
+        }
+        public string get_index_flow_line()
+        {
+            return alluse_data.flow_line();
+        }
+
     }
 }
 
