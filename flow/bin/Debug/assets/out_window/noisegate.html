@@ -150,6 +150,30 @@
     </div>
 </div>
 <script>
+    //初始化数据
+    $(function () {
+        var data = window.external.get_noisegt();
+        if(data!=""){
+            var data2 = eval("(" + data + ")");
+            var en = data2[0];
+            if(en==1){
+                $("#Noisegate").attr({"checked":"checked"});
+                ischecked=1;
+            }
+            var threshold = data2[1];
+            slider3.setValue(threshold);
+            $("#out_noise_slider3_num").val(threshold);
+            var att_time = data2[2];
+            slider1.setValue(att_time);
+            $("#out_noise_slider1_num").val(att_time);
+            var rea_time = data2[3];
+            slider2.setValue(rea_time);
+            $("#out_noise_slider2_num").val(rea_time);
+            var avg_time = data2[4];
+            slider4.setValue(avg_time);
+            $("#out_noise_slider4_num").val(avg_time);
+        }
+    });
     var ticks1 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
     var ticks_positions1 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
     var value1 = 0;
@@ -231,7 +255,9 @@
     }
     function noisget_enable() {
         var isEnable = window.external.set_noisegt_enable(ischecked);
-        alert(isEnable);
+        if(isEnable==1){
+
+        }
     }
     function noisegate_value() {
         var attack = $("#out_noise_slider1_num").val();

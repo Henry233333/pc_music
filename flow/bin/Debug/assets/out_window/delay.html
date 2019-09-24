@@ -153,6 +153,13 @@
 </div>
 </body>
 <script>
+    //初始化数据
+    $(function () {
+        var data = window.external.get_gain();
+        if(data!=""){
+            var data2 = eval("(" + data + ")");
+        }
+    });
     var delay_value = 0;
     $(function () {
         $("#delay_slider").slider({
@@ -170,6 +177,9 @@
     function set_enable() {
         var delay_enable = $("#delay_enable").val();
         var isSet = window.external.set_delay_enable(delay_enable);
+        if(isSet==1){
+
+        }
     }
     function set_time() {
         var delay_time =  $("#delay_slider_num").val();

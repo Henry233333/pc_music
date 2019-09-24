@@ -3,15 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="a7d9c8e0-a547-46a6-bcb4-14207d3c1520" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../../flow.v11.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../flow.v11.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Form1.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/compr.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/compr.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/delay.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/delay.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/gain.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/gain.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/ldeq.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/ldeq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/limiter.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/limiter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/noisegate.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/noisegate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/peak-level.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/peak-level.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out_window/peq.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/peq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out_window/xover.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/xover.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.csproj.GenerateResource.Cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.csproj.GenerateResource.Cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../out_form.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../out_form.Designer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../out_form.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../out_form.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -102,6 +109,8 @@
       <workItem from="1568941717657" duration="14424000" />
       <workItem from="1569053634979" duration="1937000" />
       <workItem from="1569115909736" duration="8675000" />
+      <workItem from="1569201079031" duration="14617000" />
+      <workItem from="1569287541993" duration="6652000" />
     </task>
     <task id="LOCAL-00001" summary="items types enable">
       <created>1568613009490</created>
@@ -131,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568969691932</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="eq界面调整，流程图改造">
+      <created>1569201158633</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1569201158633</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +171,7 @@
     <MESSAGE value="窗口调整" />
     <MESSAGE value="bug调整" />
     <MESSAGE value="模块接口参数设置，与虚拟设备联调" />
-    <option name="LAST_COMMIT_MESSAGE" value="模块接口参数设置，与虚拟设备联调" />
+    <MESSAGE value="eq界面调整，流程图改造" />
+    <option name="LAST_COMMIT_MESSAGE" value="eq界面调整，流程图改造" />
   </component>
 </project>

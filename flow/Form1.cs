@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Runtime.InteropServices;
+using System.IO;
+using System.Text.RegularExpressions;
 
 
 
@@ -115,7 +117,7 @@ namespace flow
             //this.webBrowser1.Document.InvokeScript("winform_to_js");
 
         //js 调用的 winform 方法
-        public void out_window(string name)
+        public void out_window(string name,string key)
         {
             string LowCaseName = name.ToLower();
             if (LowCaseName == "input" || LowCaseName == "output" || LowCaseName == "asrc" || LowCaseName == "nlp" || LowCaseName == "mixer" || LowCaseName == "deq" || LowCaseName == "demux" )
@@ -125,13 +127,13 @@ namespace flow
             else if (LowCaseName == "peq")
             {
                 eq_form form1 = new eq_form();
-                form1.get_eq("out_window\\" + LowCaseName + ".html", LowCaseName); 
+                form1.get_eq("out_window\\" + LowCaseName + ".html", key); 
                 form1.Show();
             }
             else
             {
                 out_form form2 = new out_form();
-                form2.getdata("out_window\\" + LowCaseName + ".html", LowCaseName);
+                form2.getdata("out_window\\" + LowCaseName + ".html", key);
                 form2.Show();
             }
         }
@@ -256,6 +258,37 @@ namespace flow
             point_x = (Math.Log10(freq) - 1) *  2000 / 3.301;
             Console.Write(point_x);
             return point_x;
+        }
+        //读取配置文件
+        public List<string> config_list = new List<string>();
+        public void load_config(){
+            string fileName = string.Empty; //文件名
+            //打开文件
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.DefaultExt = "conf";
+            dlg.Filter = "Conf Files|*.conf";
+            if (dlg.ShowDialog() == DialogResult.OK)
+                fileName = dlg.FileName;
+            if (fileName == null || fileName=="")   
+                return;
+            //读取文件内容
+            StreamReader sr = new StreamReader(fileName, System.Text.Encoding.Default);
+            String ls_input = sr.ReadToEnd().TrimStart();
+            if (!string.IsNullOrEmpty(ls_input)) {
+                Regex rg = new Regex("(?<=(#channel-L))[.\\s\\S]*?(?=(#channel-R))", RegexOptions.Multiline | RegexOptions.Singleline);
+                string ss = rg.Match(ls_input).Value;
+                string[] ContentLines = ss.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < ContentLines.Length; i++)
+                {
+                    if (ContentLines[i].Substring(0,1) == "#") {
+                        continue;
+                    }
+                    config_list.Add(ContentLines[i]);
+                }
+            } 
+            sr.Close();
+            alluse_data.flow_config_list = config_list;
+           
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

@@ -116,6 +116,28 @@
         </div>
     </div>
     <script>
+        //初始化数据
+        $(function () {
+            var data = window.external.get_limiter();
+            if(data!=""){
+                var data2 = eval("(" + data + ")");
+                var en = data2[0];
+                if(en==1){
+                    $("#Limiter").attr({"checked":"checked"});
+                    ischecked=1;
+                }
+                var att_time = data2[1];
+                slider1.setValue(att_time);
+                $("#out_limiter_slider1_num").val(att_time);
+                var rea_time = data2[2];
+                slider2.setValue(rea_time);
+                $("#out_limiter_slider2_num").val(rea_time);
+                var threshold = data2[3];
+                slider3.setValue(threshold);
+                $("#out_limiter_slider3_num").val(threshold);
+
+            }
+        });
         var ticks1 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
         var ticks_positions1 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
         var value1 = 0;
@@ -188,7 +210,9 @@
         }
         function limiter_enable() {
             var isEnable = window.external.set_limiter_enable(ischecked);
-            alert(isEnable);
+            if(isEnable==1){
+
+            }
         }
         function limiter_value() {
             var attack = $("#out_limiter_slider1_num").val();

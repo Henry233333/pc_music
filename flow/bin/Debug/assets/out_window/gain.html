@@ -65,7 +65,7 @@
         <div class="input_slider_box" style="margin-left: 100px">
             <div style="width: 100px;height: 40px;text-align: center">
                 <input id="mute_status" type="hidden" value="0"/>
-                <button class="Gain_button" onclick="change_mute(this)">Mute</button>
+                <button class="Gain_button" id="gain_mute_btn" onclick="change_mute(this)">Mute</button>
             </div>
             <div class="slider_box_left" style="height: 360px">
                 <ul class="out_gain_slider3_ul">
@@ -92,6 +92,27 @@
         </div>
     </div>
 <script>
+    //初始化数据
+    $(function () {
+        var data = window.external.get_gain();
+        if(data!=""){
+            var data2 = eval("(" + data + ")");
+            var en = data2[0];
+            if(en==1){
+                $("#out_gain_enable").attr({"checked":"checked"});
+                ischecked=1;
+            }
+            var gaindB = data2[1];
+            slider2.setValue(gaindB);
+            $("#out_gain_slider_num").val(gaindB);
+            var mute = data2[2];
+            if(mute==1){
+                $("#gain_mute_btn").addClass("change_mute");
+                $("#mute_status").val(1);
+            }
+
+        }
+    });
     var ticks3 = [-60, -50, -40, -30, -20, -10, 0, 10, 20, 24];
     var d3 = 100 / 9;
     var ticks_positions3 = [0, d3, d3 * 2, d3 * 3, d3 * 4, d3 * 5, d3 * 6, d3 * 7, d3 * 8, d3 * 9, 100];
@@ -147,6 +168,9 @@
     }
     function gain_enable(ischecked) {
         var isEnable = window.external.set_gain_enable(ischecked);
+        if(isEnable==1){
+
+        }
     }
     function gain_value(value) {
         var isValue = window.external.set_gain_value(value);

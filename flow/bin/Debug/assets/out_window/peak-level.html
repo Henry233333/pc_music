@@ -87,7 +87,24 @@
         </div>
     </div>
     <script>
-
+        //初始化数据
+        $(function () {
+            var data = window.external.get_peak();
+            if(data!=""){
+                var data2 = eval("(" + data + ")");
+                var en = data2[0];
+                if(en==1){
+                    $("#Peak_level").attr({"checked":"checked"});
+                    ischecked=1;
+                }
+                var att_time = data2[1];
+                slider1.setValue(att_time);
+                $("#out_peak_slider1_num").val(att_time);
+                var rea_time = data2[2];
+                slider2.setValue(rea_time);
+                $("#out_peak_slider2_num").val(rea_time);
+            }
+        });
         var ticks1 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
         var ticks_positions1 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
         var value1 = 0;
@@ -140,7 +157,9 @@
         }
         function peak_enable() {
             var isEnable = window.external.set_peak_enable(ischecked);
-            alert(isEnable);
+            if(isEnable==1){
+
+            }
         }
         function peal_value() {
             var attack = $("#out_peak_slider1_num").val();

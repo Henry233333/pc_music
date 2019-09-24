@@ -55,21 +55,26 @@
             color: white;
             text-align: center;
         }
-        .xover_table{
+
+        .xover_table {
             border: none;
             margin-top: 30px;
+            margin-left: -30px;
         }
-        tr{
+
+        tr {
             border: none;
         }
-        td{
+
+        td {
             border: none;
             color: white;
             text-align: left;
             padding-right: 10px;
             height: 40px;
         }
-        select{
+
+        select {
             height: 25px;
             width: 110px;
         }
@@ -79,8 +84,8 @@
 <div class="left" style="margin-left: 100px;margin-top: 50px">
         <span style="height: 30px;">
                 <label class="input_label">off</label>
-                <input type="checkbox" class="check_style" id="LevelDetect">
-                <label for="LevelDetect" class="green"></label>
+                <input type="checkbox" class="check_style" id="xover_enable" onclick="change_enable(this)">
+                <label for="xover_enable" class="green"></label>
                 <label class="input_label">on</label>
                 <label class="input_label" style="margin-left: 30px">Xover</label>
         </span>
@@ -88,7 +93,7 @@
 <div class="out_xover_main">
 
     <div class="left">
-        <p>
+        <!--<p>
             <button class="xover_button1">
                 Bypass
             </button>
@@ -97,7 +102,7 @@
         <p>
             <input type="number" class="xover_input" style="width: 60px">
         </p>
-        <p>0dB</p>
+        <p>0dB</p>-->
 
     </div>
     <div class="center">
@@ -105,30 +110,30 @@
             <tr>
                 <td>FilterType</td>
                 <td>
-                    <select id="xover_select1">
-                        <option value="buttworth" selected="selected">BUTTWORTH</option>
-                        <option value="other" >other</option>
+                    <select id="xover_select1" onchange="change_xover_data()">
+                        <option value="0" selected="selected">BUTTWORTH</option>
+                        <option value="2">LINKREILY</option>
                     </select>
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td>Freq</td>
-                <td><input type="number" id="xover_input2" class="xover_input" style="width: 80px"></td>
+                <td><input onchange="change_xover_data()" type="number" id="xover_input2" class="xover_input" style="width: 80px"></td>
                 <td>Hz</td>
             </tr>
             <tr>
                 <td>OCT</td>
                 <td>
-                    <select id="xover_select2">
-                        <option value="1" selected="selected">1</option>
-                        <option value="2" >2</option>
-                        <option value="3" >3</option>
-                        <option value="4" >4</option>
-                        <option value="5" >5</option>
-                        <option value="6" >6</option>
-                        <option value="7" >7</option>
-                        <option value="8" >8</option>
+                    <select id="xover_select2" style="width: 150px" onchange="change_xover_data()">
+                        <option value="0" selected="selected">XOVER_SLOPE_6</option>
+                        <option value="1">XOVER_SLOPE_12</option>
+                        <option value="2">XOVER_SLOPE_18</option>
+                        <option value="3">XOVER_SLOPE_24</option>
+                        <option value="4">XOVER_SLOPE_30</option>
+                        <option value="5">XOVER_SLOPE_36</option>
+                        <option value="6">XOVER_SLOPE_48</option>
+
                     </select>
                 </td>
                 <td>dB/OCT</td>
@@ -140,9 +145,9 @@
             <tr>
                 <td>Type</td>
                 <td>
-                    <select id="xover_select3" style="width: 140px">
-                        <option value="high" selected="selected">High Passed Filter</option>
-                        <option value="low" >Low Passed Filter</option>
+                    <select id="xover_select3" style="width: 140px" onchange="change_xover_data()">
+                        <option value="1" selected="selected">High Passed Filter</option>
+                        <option value="0">Low Passed Filter</option>
                     </select>
                 </td>
                 <td>&nbsp;</td>
@@ -150,5 +155,56 @@
         </table>
     </div>
 </div>
+<script>
+    $(function () {
+        var enable =0;
+        var type = 0;
+        var func = 0;
+        var fc = 0;
+        var slope = 0;
+        var data = window.external.get_xover_value();
+        if (data != "") {
+            xoverdata = eval("(" + data + ")");
+            enable = xoverdata[0];
+            type = xoverdata[1];
+            func = xoverdata[2];
+            fc = xoverdata[3];
+            slope = xoverdata[4];
+        }
+        if(enable==1){$("#xover_enable").attr({"checked":"checked"});ischecked=1;};
+        $("#xover_select3").val(type);
+        $("#xover_select2").val(slope);
+        $("#xover_select1").val(func);
+        $("#xover_input2").val(fc);
+    });
+    var ischecked = 0;
+    function change_xover_data() {
+        var type =  $("#xover_select3").val();
+        var slope =  $("#xover_select2").val();
+        var func =  $("#xover_select1").val();
+        var fc =  $("#xover_input2").val();
+        if(fc>20000 || fc<20){
+            alert("Freq取值范围在20-20000之间");
+            return;
+        }
+        var isEnable = window.external.set_xover_value(ischecked,type,func,fc,slope);
+    }
+
+    function change_enable(e) {
+        if($(e).is(":checked")){
+            ischecked= 1 ;
+        }
+        else{
+            ischecked=0;
+        }
+        xover_enable();
+    }
+    function xover_enable() {
+        var isEnable = window.external.set_xover_enable(ischecked);
+        if(isEnable==1){
+
+        }
+    }
+</script>
 </body>
 </html>

@@ -89,7 +89,11 @@
                             /*,
                             $(go.Picture, "",
                                 { width: 30, height: 45, margin: new go.Margin(10, 10) })*/
-                        )
+                        ),
+                        {doubleClick : function(e, node){// 双击事件
+                                handlerDC(e, node);//双击执行的方法
+                            }
+                        }
                     ),
                     $(go.Panel, "Vertical",
                         {name: "LEFTPORTS", alignment: new go.Spot(0, 0.5, 0, 7)},
@@ -109,11 +113,14 @@
                     {relinkableFrom: true, relinkableTo: true, reshapable: true, resegmentable: true},
                     $(go.Shape, {stroke: "gray", strokeWidth: 2.5})
                 );
-            myDiagram.addDiagramListener("ObjectDoubleClicked", function (e, obj) {
-                var name = e.zs.Pb;
-                out_window(name);
-            });
+            function handlerDC(e, obj) {
 
+                var name = obj.Aj.jb.name;
+                var key =obj.Aj.jb.key;
+                console.log(obj.Aj.jb.mod_name);
+                out_window(name,key);
+
+            }
             function findAllSelectedItems() {
                 var items = [];
                 for (var nit = myDiagram.nodes; nit.next();) {
@@ -215,7 +222,7 @@
                         ]*/
                     });
 
-            set_models_text();
+
             load();
             showModel();
         }
@@ -294,11 +301,17 @@
             load();
         }
 
-        function out_window(name) {
+        function out_window(name,key) {
             if (name != "" && name != undefined) {
-                window.external.out_window(name);
+                window.external.out_window(name,key);
             }
         }
+        function load_config() {
+            window.external.load_config();
+            set_models_text();
+            load();
+        }
+
     </script>
 
 </head>
@@ -307,12 +320,20 @@
     <div id="myPaletteDiv" style="width: 300px;height:600px; margin-right: 2px; border: solid 1px black"></div>
     <div id="myDiagramDiv" style="border: solid 1px black; width:100%; height:600px"></div>
     <textarea id="mySavedModel" style="width:100%;height:300px;display: none;">
-
+        { "class": "GraphLinksModel",
+        "copiesArrays": true,
+        "copiesArrayObjects": true,
+        "linkFromPortIdProperty": "fromPort",
+        "linkToPortIdProperty": "toPort",
+        "nodeDataArray": [],
+        "linkDataArray": []
+        }
     </textarea>
 </div>
 <div>
     <button id="SaveButton" onclick="save()" style="width: 100px;height: 50px;">Save</button>
     <button id="ClearButton" onclick="clearsavemodel()" style="width: 100px;height: 50px;">Clear</button>
+    <button id="loadButton" onclick="load_config()" style="width: 100px;height: 50px;">Load</button>
 </div>
 </body>
 </html>

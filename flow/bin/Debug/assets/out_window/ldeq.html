@@ -36,7 +36,7 @@
                 <span style="height: 30px;position: relative;top: 100px">
                 <label class="input_label" style="margin-left: 30px">LDEQ</label><br><br>
                 <label class="input_label">off</label>
-                <input type="checkbox" class="check_style" id="ldeq">
+                <input type="checkbox" class="check_style" id="ldeq" onclick="change_enable(this)">
                 <label for="ldeq" class="green"></label>
                 <label class="input_label">on</label>
                 <br><br>
@@ -88,7 +88,9 @@
     }
     function setVal(e) {
         var id = $(e).attr('id');
-        if(id=="out_ldeq_slider1_num"){slider1.setValue(e.value)}
+        if(id=="out_ldeq_slider1_num"){
+            slider1.setValue(e.value);
+            ischecked=1;}
     }
     function create_slider(id, ticks, ticks_positions, value) {
        return  new Slider(id, {
@@ -103,6 +105,25 @@
             reversed: true,
         });
     }
+    var ischecked = 0;
+    function change_enable(e) {
+        if($(e).is(":checked")){
+            ischecked= 1 ;
+        }
+        else{
+            ischecked=0;
+        }
+        ldeq_enable();
+    }
+    function ldeq_enable() {
+        var isEnable = window.external.set_limiter_enable(ischecked);
+        if(isEnable==1){
+
+        }
+    }
+    $(function () {
+        var list = window.external.get_ldeq_options();
+    });
 </script>
 </body>
 </html>

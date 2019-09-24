@@ -31,9 +31,9 @@ namespace flow
             Console.Write(alluse_data.create_net_create);
         }
         string modName = "";
-        public void getdata(string info, string lowcasename)
+        public void getdata(string info, string key_name)
         {
-            modName = lowcasename;
+            modName = key_name;
             string pageinfo = info;
             RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION", true);
             if (key != null)
@@ -64,7 +64,7 @@ namespace flow
         public int set_delay_enable(int enable)
         {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "delay-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_delay_enable(ins, name, enable);
@@ -81,7 +81,7 @@ namespace flow
         public int set_delay_time(float time)
         {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "delay-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_delay_time(ins, name, time);
@@ -96,10 +96,34 @@ namespace flow
             }
             return 0;
         }
+        public string get_delay()
+        {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            string data = "[";
+            int enable = 0;
+            float time = 0;
+            if (ins != null)
+            {
+                int isSet = audioaef_net_dll.net_audioaef_get_delay(ins, name,ref enable,ref time);
+                if (isSet == 0)
+                {
+                    data += "'" + enable + "'" + ",";
+                    data += "'" + time + "'";
+                    data += "]";
+                    return data;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            return "";
+        }
         //gain界面方法
         public int set_gain_enable(int enable) {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "gain-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_gain_enable(ins, name, enable);
@@ -116,7 +140,7 @@ namespace flow
         }
         public int set_gain_value(float value) {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "gain-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_gain_gain(ins, name, value);
@@ -133,7 +157,7 @@ namespace flow
         }
         public int set_gain_mute(int mute) {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "gain-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_gain_mute(ins, name, mute);
@@ -148,11 +172,38 @@ namespace flow
             }
             return 0;
         }
+        public string get_gain()
+        {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            string data = "[";
+            int enable = 0;
+            float gaindB = 0;
+            int mute = 0;
+            if (ins != null)
+            {
+                int isSet = audioaef_net_dll.net_audioaef_get_gain(ins, name, ref enable, ref gaindB, ref mute);
+                if (isSet == 0)
+                {
+                    data += "'" + enable + "'" + ",";
+                    data += "'" + gaindB + "'" + ",";
+                    data += "'" + mute + "'";
+                    data += "]";
+                    Console.WriteLine(data);
+                    return data;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            return "";
+        }   
         //noisegate界面方法
         public int set_noisegt_enable(int enable)
         {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "ngt-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_noisegt_enable(ins, name, enable);
@@ -170,7 +221,7 @@ namespace flow
         public int set_noisegt_value(int enable,float threshold, float att_time, float rea_time, float avg_time)
         {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "ngt-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_noisegt(ins, name, enable,threshold,att_time,rea_time,avg_time);
@@ -186,13 +237,41 @@ namespace flow
             }
             return 0;
         }
+        public string get_noisegt()
+        {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            string data = "[";
+            int enable = 0;
+            float threshold = 0, att_time = 0, rea_time = 0, avg_time = 0;
+            if (ins != null)
+            {
+                int isSet = audioaef_net_dll.net_audioaef_get_noisegt(ins, name, ref enable, ref att_time, ref rea_time, ref threshold, ref avg_time);          
+                if (isSet == 0)
+                {
+                    data += "'" + enable + "'" + ",";
+                    data += "'" + threshold + "'" + ",";
+                    data += "'" + att_time + "'" + ",";
+                    data += "'" + rea_time + "'" + ",";
+                    data += "'" + avg_time + "'";
+                    data += "]";
+                    Console.Write(data);
+                    return data;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            return "";
+        }
         //RMS-level界面方法
         //暂无
         //peak-level界面方法
         public int set_peak_enable(int enable)
         {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "peak-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_level_enable(ins, name, enable);
@@ -210,7 +289,7 @@ namespace flow
         public int set_peak_value(int enable, float att_time, float rea_time)
         {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "peak-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_level(ins, name, enable, att_time, rea_time);
@@ -226,11 +305,36 @@ namespace flow
             }
             return 0;
         }
+        public string get_peak()
+        {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            string data = "[";
+            int enable = 0;
+            float att_time = 0, rea_time = 0;
+            if (ins != null)
+            {
+                int isSet = audioaef_net_dll.net_audioaef_get_levelConfig(ins, name, ref enable, ref att_time, ref rea_time);
+                if (isSet == 0)
+                {
+                    data += "'" + enable + "'" + ",";         
+                    data += "'" + att_time + "'" + ",";
+                    data += "'" + rea_time + "'";
+                    data += "]";
+                    return data;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            return "";
+        }
         //xover界面方法
         public int set_xover_enable(int enable)
         {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "hpf-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_xover_enable(ins, name, enable);
@@ -248,7 +352,7 @@ namespace flow
         public int set_xover_value(int enable,int type, int func, float fc, int slope)
         {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "hpf-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_xover(ins, name, enable, type, func, fc, slope);
@@ -264,11 +368,41 @@ namespace flow
             }
             return 0;
         }
+        public string get_xover_value()
+        {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            string xover_data = "[";
+            int enable = 0;
+            int type=0;
+            int func=0;
+            float fc=0;
+            int slope=0;
+            if (ins != null)
+            {
+                int isSet = audioaef_net_dll.net_audioaef_get_xover(ins, name, ref enable, ref type, ref func, ref fc, ref slope);
+                if (isSet == 0)
+                {
+                    xover_data += "'" + enable + "'" + ",";
+                    xover_data += "'" + type + "'" + ",";
+                    xover_data += "'" + func + "'" + ",";
+                    xover_data += "'" + fc + "'" + ",";
+                    xover_data += "'" + slope + "'";
+                    xover_data += "]";
+                    return xover_data;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            return "";
+        }
         //compr界面方法
         public int set_compr_enable(int enable)
         {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "compr-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_compressor_enable(ins, name, enable);
@@ -286,7 +420,7 @@ namespace flow
         public int set_compr_value(int enable, float att_time, float rea_time, float threshold, float ratio)
         {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "compr-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_compressor(ins, name, enable, att_time, rea_time, threshold, ratio);
@@ -302,11 +436,39 @@ namespace flow
             }
             return 0;
         }
+        public string get_compr()
+        {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            string data = "[";
+            int enable = 0;
+            float att_time = 0, rea_time = 0, threshold = 0, ratio = 0;
+            if (ins != null)
+            {
+                int isSet = audioaef_net_dll.net_audioaef_get_compressor(ins, name, ref enable, ref att_time, ref rea_time, ref threshold, ref ratio);
+                if (isSet == 0)
+                {
+                    data += "'" + enable + "'" + ",";
+                    data += "'" + att_time + "'" + ",";
+                    data += "'" + rea_time + "'" + ",";
+                    data += "'" + threshold + "'" + ",";
+                    data += "'" + ratio + "'";
+                    data += "]";
+                    Console.WriteLine(data);
+                    return data;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            return "";
+        }
         //limiter界面方法
         public int set_limiter_enable(int enable)
         {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "lmt-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_limiter_enable(ins, name, enable);
@@ -324,7 +486,7 @@ namespace flow
         public int set_limiter_value(int enable, float att_time, float rea_time, float threshold)
         {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "lmt-L0";
+            string name = modName;
             if (ins != null)
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_limiter(ins, name, enable, att_time, rea_time, threshold);
@@ -340,9 +502,84 @@ namespace flow
             }
             return 0;
         }
-
+        public string get_limiter()
+        {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            string data = "[";
+            int enable = 0;
+            float att_time = 0, rea_time = 0, threshold = 0;
+            if (ins != null)
+            {
+                int isSet = audioaef_net_dll.net_audioaef_get_limiter(ins, name, ref enable, ref att_time, ref rea_time, ref threshold);
+                if (isSet == 0)
+                {
+                    data += "'" + enable + "'" + ",";
+                    data += "'" + att_time + "'" + ",";
+                    data += "'" + rea_time + "'" + ",";
+                    data += "'" + threshold + "'";
+                    data += "]";
+                    return data;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            return "";
+        }
         
         //ldeq界面方法
+        public int set_ldeq_enable(int enable)
+        {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            if (ins != null)
+            {
+                int isSet = audioaef_net_dll.net_audioaef_set_loudeq_enable(ins, name, enable);
+                if (isSet == 0)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            return 0;
+        }
+        public string get_ldeq_options()
+        {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            string data = "[";
+            string  options = "";
+            
+            if (ins != null)
+            {
+                int isSet = audioaef_net_dll.net_audioaef_get_loudeq_option(ins, ref options);
+                Console.WriteLine(isSet);
+                if (isSet == 0)
+                {
+                    for (int i = 0; i < options.Length; i++)
+                    {
+                        if (i == options.Length - 1) {
+                            data += "'" + options[i] + "'";
+                        }
+                        data += "'" + options[i] + "'" + ",";
+                    } 
+                    data += "]";
+                    Console.WriteLine(data);
+                    return data;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            return "";
+        }
+        
         //fir界面方法
         private void out_form_FormClosing(object sender, FormClosingEventArgs e)
         {
