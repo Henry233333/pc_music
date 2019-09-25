@@ -1,0 +1,5 @@
+audioaef.h 
+	调节本地音频的api接口
+audioaef_netapi.h
+	调节远端设备的网络接口，接口和参数与本地一致（调节音效的完全一致），前面加了net_前缀， 网络接口不用调用process
+	可以用virtdevice目录下的程序 模拟远端硬件设备。
