@@ -5,18 +5,9 @@
       <change beforePath="$PROJECT_DIR$/../../../../flow.v11.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../flow.v11.suo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Form1.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/compr.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/compr.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/delay.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/delay.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/gain.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/gain.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/ldeq.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/ldeq.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/limiter.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/limiter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/noisegate.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/noisegate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/peak-level.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/peak-level.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/peq.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/peq.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/xover.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/xover.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../eq_form.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../eq_form.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../out_form.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../out_form.cs" afterDir="false" />
@@ -52,16 +43,16 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Work\pc_music\flow\bin\Debug\assets\index\js" />
-      <recent name="E:\Work\winform\flow\flow\bin\Debug\assets\out_window" />
-      <recent name="E:\Work\winform\flow\flow\bin\Debug\assets\index\css" />
-      <recent name="E:\Work\winform\flow\flow\bin\Debug\assets\index" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\work\winform\flow\flow\bin\Debug\assets\index\js" />
       <recent name="D:\work\winform\flow\flow\bin\Debug\assets\out_window\js" />
       <recent name="E:\Work\winform\flow\flow\bin\Debug\assets\out_window\css" />
+      <recent name="E:\Work\winform\flow\flow\bin\Debug\assets\index" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Work\pc_music\flow\bin\Debug\assets\index\js" />
+      <recent name="E:\Work\winform\flow\flow\bin\Debug\assets\out_window" />
+      <recent name="E:\Work\winform\flow\flow\bin\Debug\assets\index\css" />
       <recent name="E:\Work\winform\flow\flow\bin\Debug\assets\index" />
     </key>
   </component>
@@ -110,7 +101,9 @@
       <workItem from="1569053634979" duration="1937000" />
       <workItem from="1569115909736" duration="8675000" />
       <workItem from="1569201079031" duration="14617000" />
-      <workItem from="1569287541993" duration="6652000" />
+      <workItem from="1569287541993" duration="9865000" />
+      <workItem from="1569320535827" duration="185000" />
+      <workItem from="1569373444238" duration="619000" />
     </task>
     <task id="LOCAL-00001" summary="items types enable">
       <created>1568613009490</created>
@@ -147,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569201158633</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="根据config画流程图">
+      <created>1569312549589</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1569312549589</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,6 +172,7 @@
     <MESSAGE value="bug调整" />
     <MESSAGE value="模块接口参数设置，与虚拟设备联调" />
     <MESSAGE value="eq界面调整，流程图改造" />
-    <option name="LAST_COMMIT_MESSAGE" value="eq界面调整，流程图改造" />
+    <MESSAGE value="根据config画流程图" />
+    <option name="LAST_COMMIT_MESSAGE" value="根据config画流程图" />
   </component>
 </project>

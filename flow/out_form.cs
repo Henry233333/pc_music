@@ -28,12 +28,13 @@ namespace flow
         
         private void out_form_Load(object sender, EventArgs e)
         {
-            Console.Write(alluse_data.create_net_create);
+            Console.WriteLine(alluse_data.create_net_create);
         }
         string modName = "";
         public void getdata(string info, string key_name)
         {
-            modName = key_name;
+            modName = key_name + "-L0";
+            Console.WriteLine(modName);
             string pageinfo = info;
             RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION", true);
             if (key != null)
@@ -55,6 +56,7 @@ namespace flow
         //connect界面方法获取IP创建公共连接
         public int getDevice(string ip) {
             int isSet = alluse_data.create_net_audioaef(ip);
+            Console.WriteLine(isSet);
             if (isSet == 0) {
                 return 0;
             }
@@ -255,7 +257,7 @@ namespace flow
                     data += "'" + rea_time + "'" + ",";
                     data += "'" + avg_time + "'";
                     data += "]";
-                    Console.Write(data);
+                    Console.WriteLine(data);
                     return data;
                 }
                 else
@@ -337,7 +339,9 @@ namespace flow
             string name = modName;
             if (ins != null)
             {
+                
                 int isSet = audioaef_net_dll.net_audioaef_set_xover_enable(ins, name, enable);
+
                 if (isSet == 0)
                 {
                     return 1;
@@ -371,6 +375,7 @@ namespace flow
         public string get_xover_value()
         {
             IntPtr ins = alluse_data.create_net_create;
+            
             string name = modName;
             string xover_data = "[";
             int enable = 0;
@@ -380,7 +385,10 @@ namespace flow
             int slope=0;
             if (ins != null)
             {
+                Console.WriteLine("");
+                Console.WriteLine("name:"+name);
                 int isSet = audioaef_net_dll.net_audioaef_get_xover(ins, name, ref enable, ref type, ref func, ref fc, ref slope);
+                Console.WriteLine(isSet);
                 if (isSet == 0)
                 {
                     xover_data += "'" + enable + "'" + ",";
@@ -421,7 +429,7 @@ namespace flow
         {
             IntPtr ins = alluse_data.create_net_create;
             string name = modName;
-            if (ins != null)
+            if (ins != null) 
             {
                 int isSet = audioaef_net_dll.net_audioaef_set_compressor(ins, name, enable, att_time, rea_time, threshold, ratio);
                 Console.WriteLine(isSet);

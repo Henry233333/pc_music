@@ -26,10 +26,10 @@ namespace flow
             Console.Write(alluse_data.create_net_create);
         }
         string modName = "";
-        public void get_eq(string info,string lowcasename)
+        public void get_eq(string info,string key_name)
         {
 
-            modName = lowcasename;
+            modName = key_name+"L0";
             string pageinfo = info;
             RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION", true);
             if (key != null)
@@ -103,7 +103,7 @@ namespace flow
         public int set_node_dataY(int id,int enable,int type , float gain, float q, float freq)
         {
             IntPtr ins = alluse_data.create_net_create;
-            string name = "peq-L0";
+            string name = modName;
              int eq_en = audioaef_net_dll.net_audioaef_set_peq_enable(ins, name, 1);
              Console.WriteLine(eq_en);
             try

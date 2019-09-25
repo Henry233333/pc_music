@@ -145,7 +145,7 @@ namespace flow
         public void get_eq(string info)
         {
 
-            Console.WriteLine(info);
+            
             string pageinfo = info;
          
             RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION", true);
@@ -256,7 +256,7 @@ namespace flow
         {
             double point_x = 0;
             point_x = (Math.Log10(freq) - 1) *  2000 / 3.301;
-            Console.Write(point_x);
+            
             return point_x;
         }
         //读取配置文件
@@ -275,9 +275,8 @@ namespace flow
             StreamReader sr = new StreamReader(fileName, System.Text.Encoding.Default);
             String ls_input = sr.ReadToEnd().TrimStart();
             if (!string.IsNullOrEmpty(ls_input)) {
-                Regex rg = new Regex("(?<=(#channel-L))[.\\s\\S]*?(?=(#channel-R))", RegexOptions.Multiline | RegexOptions.Singleline);
-                string ss = rg.Match(ls_input).Value;
-                string[] ContentLines = ss.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+               
+                string[] ContentLines = ls_input.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < ContentLines.Length; i++)
                 {
                     if (ContentLines[i].Substring(0,1) == "#") {
