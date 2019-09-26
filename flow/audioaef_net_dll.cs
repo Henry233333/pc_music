@@ -188,7 +188,7 @@ namespace flow
 /* PEQ 滤波器组设置 */
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_get_peq_enable")]
-        public static extern int net_audioaef_get_peq_enable(IntPtr ins, string name, int enable);
+        public static extern int net_audioaef_get_peq_enable(IntPtr ins, string name,ref int enable);
 
 
 //滤波器BQF使能 bqf-N段BQF序号： 0-5
@@ -217,7 +217,7 @@ namespace flow
 //某一段BQF整体参数读取
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_get_peq_bqf")]
-        public static extern int net_audioaef_get_peq_bqf(IntPtr ins,string name, int bqfID, int  enable, int  type, float  gain, float  q, float  freq);
+        public static extern int net_audioaef_get_peq_bqf(IntPtr ins,string name,int bqfID,ref int  enable,ref int  type,ref float  gain,ref float  q,ref float  freq);
 
 
 // GEQ 滤波器组设置 
@@ -239,7 +239,7 @@ namespace flow
         public static extern int net_audioaef_get_geq_bqf(IntPtr ins,string name, int bqfID, float  gain, float  freq);
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_get_loudeq_option")]
-        public static extern int net_audioaef_get_loudeq_option(IntPtr ins,ref string optionlist);
+        public static extern int net_audioaef_get_loudeq_option(IntPtr ins,ref string [] optionlist);
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_set_loudeq_type")]
         public static extern int net_audioaef_set_loudeq_type(IntPtr ins, string name, string type);

@@ -23,13 +23,13 @@ namespace flow
        
         private void eq_form_Load(object sender, EventArgs e)
         {
-            Console.Write(alluse_data.create_net_create);
+            
         }
         string modName = "";
         public void get_eq(string info,string key_name)
         {
 
-            modName = key_name+"L0";
+            modName = key_name;
             string pageinfo = info;
             RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION", true);
             if (key != null)
@@ -70,6 +70,15 @@ namespace flow
 
         public IntPtr eq_create;
         //初始化
+        public void distory_creates() {
+            mydll.effectRespCurv_destroy(eq_create);
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            for (int i = 0; i < 8; i++)
+            {
+                int is_eq = audioaef_net_dll.net_audioaef_set_peq_bqf(ins, name, i, 1, 9, (float)0, (float)0.1, (float)20);
+            }
+        }
         public void eq_creates()
         {
             eq_create = mydll.effectRespCurv_create(8, 2000, 48000, 0);
@@ -81,7 +90,30 @@ namespace flow
             mydll.effectRespCurv_add_bqf(eq_create, 5);
             mydll.effectRespCurv_add_bqf(eq_create, 6);
             mydll.effectRespCurv_add_bqf(eq_create, 7);
+            
 
+        }
+        public string get_load_data(int id) {
+            IntPtr ins = alluse_data.create_net_create;      
+            int  enable =0 ,type=0;
+            float gain=0,q=0,freq=0;
+            String list = "[";
+                int isget = audioaef_net_dll.net_audioaef_get_peq_bqf(ins, modName, id, ref enable, ref type, ref gain, ref q, ref freq);
+                if (isget == 0)
+                {
+                    list += "'" + enable + "'" + ",";
+                    list += "'" + type + "'" + ",";
+                    list += "'" + gain + "'" + ",";
+                    list += "'" + q + "'" + ",";
+                    list += "'" + freq + "'";
+                    list += "]";
+                    Console.WriteLine(list);
+                    return list;
+                }
+                else
+                {
+                    return "";
+                }
         }
         public String get_dataY()
         {
@@ -102,16 +134,16 @@ namespace flow
 
         public int set_node_dataY(int id,int enable,int type , float gain, float q, float freq)
         {
+            
             IntPtr ins = alluse_data.create_net_create;
             string name = modName;
              int eq_en = audioaef_net_dll.net_audioaef_set_peq_enable(ins, name, 1);
-             Console.WriteLine(eq_en);
+             
             try
             {  
                  mydll.effectRespCurv_set_bqf_enable(eq_create, id, enable);
                  mydll.effectRespCurv_set_bqf(eq_create, id, enable, type, gain, q, freq);
                  int is_eq = audioaef_net_dll.net_audioaef_set_peq_bqf(ins, name, id, enable, type, gain,q,freq);
-                 Console.WriteLine(is_eq);
               
             }
             catch (Exception)
@@ -123,6 +155,9 @@ namespace flow
             return 1;
            
         }
+       
+
+
 
         public string get_node_dataY(int id)
         {
@@ -135,9 +170,6 @@ namespace flow
                 list += "'" + (float)ResponseMagdB[i] + "'" + ",";
             }
             list += "]";
-
-
-
             return list;
         }
 
@@ -150,7 +182,7 @@ namespace flow
         { 
             double point_x = 0;
             point_x = (Math.Log10(freq) - 1) * 2000 / 3.301;
-            Console.Write(point_x);
+           
             return point_x;
         }
         //eq界面设置参数方法

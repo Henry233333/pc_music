@@ -81,6 +81,7 @@ extern "C" {
 
 	//return samples
 	DLL_API int audioaef_process(void*ins, float*indata[], float*outdata[], int samples);
+	DLL_API int audioaef_process_fp24(void*aefIns, int*in[], int*out[], int samples);
 	DLL_API int audioaef_process_v2(void*ins, char*indata, char*outdata, int samples);
 	
 	DLL_API int audioaef_save_config(void*ins,char*file);

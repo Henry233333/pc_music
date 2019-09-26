@@ -88,7 +88,10 @@ dragFunc("eq_item_5");
 dragFunc("eq_item_6");
 dragFunc("eq_item_7");
 dragFunc("eq_item_8");
+
+
 var now_eq_item_id = 0;
+
 
 function change_item_xy(item_id, itemX, itemY) {
     now_eq_item_id = item_id;
@@ -218,3 +221,4 @@ function change_item_filter_text(value) {
     else if(value==12){$("#filter_type").val("12")}
     else if(value==13){$("#filter_type").val("13")}
 }
+

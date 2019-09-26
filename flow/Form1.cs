@@ -119,6 +119,7 @@ namespace flow
         //js 调用的 winform 方法
         public void out_window(string name,string key)
         {
+            
             string LowCaseName = name.ToLower();
             if (LowCaseName == "input" || LowCaseName == "output" || LowCaseName == "asrc" || LowCaseName == "nlp" || LowCaseName == "mixer" || LowCaseName == "deq" || LowCaseName == "demux" )
             {
@@ -275,8 +276,10 @@ namespace flow
             StreamReader sr = new StreamReader(fileName, System.Text.Encoding.Default);
             String ls_input = sr.ReadToEnd().TrimStart();
             if (!string.IsNullOrEmpty(ls_input)) {
+                Regex rg = new Regex("(?<=())[.\\s\\S]*?(?=(#sub-channel out))", RegexOptions.Multiline | RegexOptions.Singleline);
+                string ss = rg.Match(ls_input).Value;
                
-                string[] ContentLines = ls_input.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                string[] ContentLines = ss.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < ContentLines.Length; i++)
                 {
                     if (ContentLines[i].Substring(0,1) == "#") {

@@ -158,6 +158,7 @@
             window.external.eq_creates();
         };
         function resetPage() {
+            window.external.distory_creates();
             window.location.reload();
         }
         function bypassPage() {
@@ -294,7 +295,6 @@
                         if(now_eq_item_id==6){item_status_7.enable = 0};
                         if(now_eq_item_id==7){item_status_8.enable = 0};
                     }
-
                     change_now_line(now_eq_item_id);
                 }
                 function change_filter_type(e) {
@@ -455,6 +455,7 @@
 
     $(function () {
         context.translate(0, 240);
+
     });
 
     //get_eq_all_line
@@ -489,6 +490,58 @@
         window.external.set_node_dataY(id,enable, filter_type, gain, q, freq);
     }
 
+    function load_data() {
+        for (var i=0;i<8;i++){
+            var ss = window.external.get_load_data(i);
+            var data2 = eval("(" + ss + ")");
+            if(i==0){item_status_1.enable = data2[0],item_status_1.filter_type=data2[1]};
+            if(i==1){item_status_2.enable = data2[0],item_status_2.filter_type=data2[1]};
+            if(i==2){item_status_3.enable = data2[0],item_status_3.filter_type=data2[1]};
+            if(i==3){item_status_4.enable = data2[0],item_status_4.filter_type=data2[1]};
+            if(i==4){item_status_5.enable = data2[0],item_status_5.filter_type=data2[1]};
+            if(i==5){item_status_6.enable = data2[0],item_status_6.filter_type=data2[1]};
+            if(i==6){item_status_7.enable = data2[0],item_status_7.filter_type=data2[1]};
+            if(i==7){item_status_8.enable = data2[0],item_status_8.filter_type=data2[1]};
+            var gain = data2[2];var q = data2[3];var freq = data2[4];
+            if(i == 0){
+                var eq_id = 'eq_item_1';
+            }
+            else if(i==1){
+                var eq_id = 'eq_item_2';
+            }
+            else if(i==2){
+                var eq_id = 'eq_item_3';
+            }
+            else if(i==3){
+                var eq_id = 'eq_item_4';
+            }
+            else if(i==4){
+                var eq_id = 'eq_item_5';
+            }
+            else if(i==5){
+                var eq_id = 'eq_item_6';
+            }
+            else if(i==6){
+                var eq_id = 'eq_item_7';
+            }
+            else if(i==7){
+                var eq_id = 'eq_item_8';
+            }
+            move_item(eq_id, freq, gain);
+            set_node_data(i, gain, q, freq);
+        }
+        var x = canvas.width;
+        var y = canvas.height;
+        context.clearRect(0, -y, x, 2 * y);
+        get_form_eq_data(context);
+    }
+
+    $(function () {
+        setTimeout(function () {
+
+            load_data();
+        },100);
+    });
     function get_node_line(id, context) {
         context.lineWidth = 1;
         if (id == 0) {

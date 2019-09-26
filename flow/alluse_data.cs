@@ -14,9 +14,9 @@ namespace flow
         public static IntPtr create_net_create;
         public static int create_net_audioaef(string url)
         {
-            Console.WriteLine("ip:"+url);
+           
             create_net_create = audioaef_net_dll.net_audioaef_create("tcp://" + url + ":10842", 0);
-            Console.WriteLine("create_net_create:" + create_net_create);
+           
             if (create_net_create == null)
             {
                 return 0;
@@ -62,21 +62,9 @@ namespace flow
                     loc_x = sloc[0];
                     loc_y = sloc[1];
                 }
-
-                Regex rg = new Regex("(?<=())[.\\s\\S]*?(?=(-))", RegexOptions.Multiline | RegexOptions.Singleline);
-                string name = rg.Match(sArray[0]).Value;
-                if (name == "input" && count == 1) {
-                    break;
-                }
-                if (name == "input")
-                {
-                    count = 1;
-                }
-                
-                
-                text += "{'name':'" + sArray[1] + "','key':'" + name + "','loc':'" + loc_x + " " + loc_y + "'},";
+                text += "{'name':'" + sArray[1] + "','key':'" + sArray[0] + "','loc':'" + loc_x + " " + loc_y + "'},";
                 if (i == flow_config_list.Count) {
-                    text += "{'name':'" + sArray[1] + "','key':'" + name + "','loc':'" + loc_x + " " + loc_y + "'}";
+                    text += "{'name':'" + sArray[1] + "','key':'" + sArray[0] + "','loc':'" + loc_x + " " + loc_y + "'}";
                 }
                 
             }
@@ -95,15 +83,12 @@ namespace flow
                 string to_list_s1 = to_list_s.Replace("[", "");
                 string to_list_s2 = to_list_s1.Replace("]", ""); ;
                 string[] to_list = to_list_s2.Split(' ');
-                Regex rg = new Regex("(?<=())[.\\s\\S]*?(?=(-))", RegexOptions.Multiline | RegexOptions.Singleline);
-                string name = rg.Match(sArray[0]).Value;
+               
                 for (int k = 0; k < to_list.Length; k++)
                 {
                     if (to_list[k] != " " || to_list[k] != null)
                     {
-                        Regex rg1 = new Regex("(?<=())[.\\s\\S]*?(?=(-))", RegexOptions.Multiline | RegexOptions.Singleline);
-                        string name2 = rg1.Match(to_list[k]).Value;
-                        text += "{'from':'" + name + "','to':'" + name2 + "'},";
+                        text += "{'from':'" + sArray[0] + "','to':'" + to_list[k] + "'},";
                     }
                 }
                 
