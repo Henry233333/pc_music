@@ -90,7 +90,8 @@
                             $(go.Picture, "",
                                 { width: 30, height: 45, margin: new go.Margin(10, 10) })*/
                         ),
-                        {doubleClick : function(e, node){// 双击事件
+                        {
+                            doubleClick: function (e, node) {// 双击事件
                                 handlerDC(e, node);//双击执行的方法
                             }
                         }
@@ -113,14 +114,16 @@
                     {relinkableFrom: true, relinkableTo: true, reshapable: true, resegmentable: true},
                     $(go.Shape, {stroke: "gray", strokeWidth: 2.5})
                 );
+
             function handlerDC(e, obj) {
 
                 var name = obj.Aj.jb.name;
-                var key =obj.Aj.jb.key;
-                console.log(name,key);
-                out_window(name,key);
+                var key = obj.Aj.jb.key;
+                console.log(name, key);
+                out_window(name, key);
 
             }
+
             function findAllSelectedItems() {
                 var items = [];
                 for (var nit = myDiagram.nodes; nit.next();) {
@@ -228,6 +231,7 @@
         }
 
         function set_models_text() {
+            $("#mySavedModel").html("");
             var item = window.external.get_index_flow_item();
             var line = window.external.get_index_flow_line();
             var flow_text = eval("(" + item + ")");
@@ -241,17 +245,17 @@
             for (var i = 0; i < flow_text.length; i++) {
                 if (flow_text[i].name == "INPUT") {
                     text_all += '{"name":"' + flow_text[i].name + '","outservices":[{"name":"out"}],"key":"' + flow_text[i].key + '","loc":"' + flow_text[i].loc + '"}';
-                    if (i != flow_text.length-1) {
+                    if (i != flow_text.length - 1) {
                         text_all += ',';
                     }
                 } else if (flow_text[i].name == "OUTPUT") {
                     text_all += '{"name":"' + flow_text[i].name + '","inservices":[{"name":"in"}],"key":"' + flow_text[i].key + '","loc":"' + flow_text[i].loc + '"}';
-                    if (i != flow_text.length-1) {
+                    if (i != flow_text.length - 1) {
                         text_all += ',';
                     }
                 } else {
                     text_all += '{"name":"' + flow_text[i].name + '","inservices":[{"name":"in"}],"outservices":[{"name":"out"}],"key":"' + flow_text[i].key + '","loc":"' + flow_text[i].loc + '"}';
-                    if (i != flow_text.length-1) {
+                    if (i != flow_text.length - 1) {
                         text_all += ',';
                     }
                 }
@@ -259,7 +263,7 @@
             text_all += '],"linkDataArray": [';
             for (var i = 0; i < flow_line.length; i++) {
                 text_all += '{"from":"' + flow_line[i].from + '","to":"' + flow_line[i].to + '","fromPort":"out", "toPort":"in"}';
-                if (i != flow_line.length-1) {
+                if (i != flow_line.length - 1) {
                     text_all += ',';
                 }
             }
@@ -277,13 +281,70 @@
             myDiagram.isModified = false;
             var testValue = document.getElementById("mySavedModel").value;
             var text = JSON.parse("" + myDiagram.model.toJson() + "");
-            //line(myDiagram.model.toJson());
+            save_jsonToText(text);
+        }
 
-            console.log(text.linkDataArray);
-            console.log(text.nodeDataArray);
-            //调用winform方法
-            //window.external.xmpf(testValue);
-            console.log(testValue);
+        function save_jsonToText(text) {
+            var linkDataArray = text.linkDataArray;
+            var nodeDataArray = text.nodeDataArray;
+            var flow_text = " " + "\r\n";
+            var parm_title_list = "";
+            for (var i = 0; i < nodeDataArray.length; i++) {
+                var name = nodeDataArray[i].name;
+                var key = nodeDataArray[i].key;
+                parm_title_list += key + "/" + name + ",";
+                var flow_row = key + "," + name + ",";
+                var to = new Array();
+                var from = new Array();
+                for (var j = 0; j < linkDataArray.length; j++) {
+                    if (linkDataArray[j].from == key) {
+                        //当前节点to下个节点
+                        to.push(linkDataArray[j].to);
+                    }
+                    if (linkDataArray[j].to == key) {
+                        //当前节点from上个节点
+                        from.push(linkDataArray[j].from);
+                    }
+                }
+                ;
+                var toText = "[";
+                for (var k = 0; k < to.length; k++) {
+                    if(k==to.length){
+                        toText += to[k];
+                    }
+                    else{
+                        toText += to[k]+"\t";
+                    }
+                }
+                toText += "]";
+                var fromText = "[";
+                for (var l = 0; l < from.length; l++) {
+                    if(l==from.length){
+                        fromText += from[l];
+                    }
+                    else{
+                        fromText += from[l]+"\t";
+                    }
+                }
+                fromText += "]";
+                flow_row += fromText + "," + toText + "," + "[" + nodeDataArray[i].loc + " 0 0]";
+                flow_text += flow_row + "\r\n";
+            }
+            flow_text += "\r\n";
+            //添加读取结束标识
+            flow_text += "#sub-channel out";
+
+            var save_flow = window.external.saveFlow(flow_text);
+            if (save_flow == 1) {
+                var save_parm = window.external.saveParms(parm_title_list);
+                if (save_parm) {
+                    alert("Save Success!");
+                }
+            } else {
+                return;
+            }
+
+
         }
 
         function load() {
@@ -301,11 +362,12 @@
             load();
         }
 
-        function out_window(name,key) {
+        function out_window(name, key) {
             if (name != "" && name != undefined) {
-                window.external.out_window(name,key);
+                window.external.out_window(name, key);
             }
         }
+
         function load_config() {
             window.external.load_config();
             set_models_text();

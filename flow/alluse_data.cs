@@ -12,6 +12,7 @@ namespace flow
     class alluse_data
     {
         public static IntPtr create_net_create;
+        public static int caiyang = 48000;
         public static int create_net_audioaef(string url)
         {
            
@@ -47,14 +48,18 @@ namespace flow
         public static List<string> flow_config_list = new List<string>();
         public static string flow_item()
         {
-            int count = 0;
+            
+
             string text = "[";
+           
             for (int i = 0; i < flow_config_list.Count; i++)
             {
-
+                
                 string[] sArray = flow_config_list[i].Split(',');
                 string loc_x = "";
                 string loc_y = "";
+               
+                
                 if (sArray[4] != "") {
                     string loctext = sArray[4].Replace("[","");
                     string loctext1 = loctext.Replace("]", "");
@@ -62,13 +67,11 @@ namespace flow
                     loc_x = sloc[0];
                     loc_y = sloc[1];
                 }
-                text += "{'name':'" + sArray[1] + "','key':'" + sArray[0] + "','loc':'" + loc_x + " " + loc_y + "'},";
-                if (i == flow_config_list.Count) {
-                    text += "{'name':'" + sArray[1] + "','key':'" + sArray[0] + "','loc':'" + loc_x + " " + loc_y + "'}";
-                }
-                
+                  text += "{'name':'" + sArray[1] + "','key':'" + sArray[0] + "','loc':'" + loc_x + " " + loc_y + "'},";    
+      
             }
             text += "]";
+            
             return text;
         }
         public static string flow_line()
@@ -96,7 +99,7 @@ namespace flow
             
             
             text += "]";
-            
+           
             return text;
         }
    

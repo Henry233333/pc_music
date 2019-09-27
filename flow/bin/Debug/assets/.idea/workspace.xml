@@ -3,27 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="a7d9c8e0-a547-46a6-bcb4-14207d3c1520" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../../flow.v11.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../flow.v11.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Form1.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Form1.Designer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Form1.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../alluse_data.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../alluse_data.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../audioaef.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../../audioaef.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../audioaef_net_dll.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../audioaef_net_dll.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../audioaef_netapi.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../../audioaef_netapi.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out_window/js/eq_move.js" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/js/eq_move.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out_window/peq.html" beforeDir="false" afterPath="$PROJECT_DIR$/out_window/peq.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audioaef.h" beforeDir="false" afterPath="$PROJECT_DIR$/../audioaef.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../audioaef_netapi.h" beforeDir="false" afterPath="$PROJECT_DIR$/../audioaef_netapi.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../libAudioSmartFlow.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../libAudioSmartFlow.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../libAudioSmartFlow.lib" beforeDir="false" afterPath="$PROJECT_DIR$/../libAudioSmartFlow.lib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../eq_form.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../eq_form.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../libAudioSmartFlow.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../../libAudioSmartFlow.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../libAudioSmartFlow.lib" beforeDir="false" afterPath="$PROJECT_DIR$/../../../libAudioSmartFlow.lib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.csproj.GenerateResource.Cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.csproj.GenerateResource.Cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../out_form.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../out_form.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +109,8 @@
       <workItem from="1569287541993" duration="9865000" />
       <workItem from="1569320535827" duration="185000" />
       <workItem from="1569373444238" duration="6251000" />
-      <workItem from="1569461982108" duration="3503000" />
+      <workItem from="1569461982108" duration="12943000" />
+      <workItem from="1569545814001" duration="11102000" />
     </task>
     <task id="LOCAL-00001" summary="items types enable">
       <created>1568613009490</created>
@@ -182,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569396164863</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="9/26  eq接口更新">
+      <created>1569465694695</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1569465694695</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +209,7 @@
     <MESSAGE value="eq界面调整，流程图改造" />
     <MESSAGE value="根据config画流程图" />
     <MESSAGE value="9/25" />
-    <option name="LAST_COMMIT_MESSAGE" value="9/25" />
+    <MESSAGE value="9/26  eq接口更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="9/26  eq接口更新" />
   </component>
 </project>

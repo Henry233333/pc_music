@@ -81,7 +81,8 @@ namespace flow
         }
         public void eq_creates()
         {
-            eq_create = mydll.effectRespCurv_create(8, 2000, 48000, 0);
+            int caryang = alluse_data.caiyang;
+            eq_create = mydll.effectRespCurv_create(8, 2000, caryang, 0);
             mydll.effectRespCurv_add_bqf(eq_create, 0);
             mydll.effectRespCurv_add_bqf(eq_create, 1);
             mydll.effectRespCurv_add_bqf(eq_create, 2);
@@ -89,9 +90,7 @@ namespace flow
             mydll.effectRespCurv_add_bqf(eq_create, 4);
             mydll.effectRespCurv_add_bqf(eq_create, 5);
             mydll.effectRespCurv_add_bqf(eq_create, 6);
-            mydll.effectRespCurv_add_bqf(eq_create, 7);
-            
-
+            mydll.effectRespCurv_add_bqf(eq_create, 7);   
         }
         public string get_load_data(int id) {
             IntPtr ins = alluse_data.create_net_create;      
