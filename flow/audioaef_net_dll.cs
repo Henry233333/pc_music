@@ -239,7 +239,7 @@ namespace flow
         public static extern int net_audioaef_get_geq_bqf(IntPtr ins,string name, int bqfID, float  gain, float  freq);
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_get_loudeq_option")]
-        public static extern int net_audioaef_get_loudeq_option(IntPtr ins,ref string [] optionlist);
+        public static extern int net_audioaef_get_loudeq_option(IntPtr ins, ref String optionlist);
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_set_loudeq_type")]
         public static extern int net_audioaef_set_loudeq_type(IntPtr ins, string name, string type);
@@ -255,7 +255,7 @@ namespace flow
         public static extern int net_audioaef_set_loudeq(IntPtr ins, string name, int enable, char type, float time);
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_get_loudeq")]
-        public static extern int net_audioaef_get_loudeq(IntPtr ins,string name, int  enable, char type,  float time);
+        public static extern int net_audioaef_get_loudeq(IntPtr ins,string name,ref int  enable,ref string type,ref  float time);
 // FIR滤波器参数 
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_set_fir_enable")]
@@ -263,16 +263,16 @@ namespace flow
 
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_get_fir_type_option")]
-        public static extern int net_audioaef_get_fir_type_option(IntPtr ins,char typelist);
+        public static extern int net_audioaef_get_fir_type_option(IntPtr ins,ref string [] typelist);
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_set_fir_type")]
-        public static extern int net_audioaef_set_fir_type(IntPtr ins, string name, char type);
+        public static extern int net_audioaef_set_fir_type(IntPtr ins, string name, string type);
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_set_fir")]
-        public static extern int net_audioaef_set_fir(IntPtr ins, string name, int enable, char type);
+        public static extern int net_audioaef_set_fir(IntPtr ins, string name, int enable, string type);
  //api will strcpy xxx to type,so type memorysize should not small than 128;
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_get_fir")]
-        public static extern int net_audioaef_get_fir(IntPtr ins,string name, int enable, char type);
+        public static extern int net_audioaef_get_fir(IntPtr ins,string name,ref int enable,ref string type);
 
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_set_delay_enable")]

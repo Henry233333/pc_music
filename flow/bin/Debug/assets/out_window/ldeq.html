@@ -116,13 +116,14 @@
         ldeq_enable();
     }
     function ldeq_enable() {
-        var isEnable = window.external.set_limiter_enable(ischecked);
+        var isEnable = window.external.set_ldeq_enable(ischecked);
         if(isEnable==1){
 
         }
     }
     $(function () {
         var list = window.external.get_ldeq_options();
+
     });
 </script>
 </body>
