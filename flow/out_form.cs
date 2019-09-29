@@ -556,26 +556,31 @@ namespace flow
             return 0;
         }
 
+
         public string get_ldeq_options()
         {
             IntPtr ins = alluse_data.create_net_create;
+            Console.WriteLine(ins);
             string name = modName;
             string data = "[";
-            string [] options = new string [20];
+            String  options = "";
             
             if (ins != null)
-            {
+            {   
                 int isGet = audioaef_net_dll.net_audioaef_get_loudeq_option(ins, ref options);
-                
+                Console.WriteLine(isGet);
                 if (isGet == 0)
                 {
-                    for (int i = 0; i < options.Length; i++)
-                    {
-                        if (i == options.Length - 1) {
-                            data += "'" + options[i] + "'";
-                        }
-                        data += "'" + options[i] + "'" + ",";
-                    } 
+                    Console.WriteLine(options);
+                    
+                    //for (int i = 0; i < options.Length; i++)
+                    //{
+                    //    if (i == options.Length - 1) {
+                    //        Console.WriteLine(options[i]);
+                    //        data += "'" + options[i] + "'";
+                    //    }
+                    //    data += "'" + options[i] + "'" + ",";
+                    //} 
                     data += "]";
                     
                     return data;
@@ -587,8 +592,106 @@ namespace flow
             }
             return "";
         }
-        
+
+        public string get_ldeq() {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            
+            string type = "";
+            int enable = 0;
+            float time = 0;
+            string data = "[";
+            int isSet = audioaef_net_dll.net_audioaef_get_loudeq(ins, name,ref enable, ref type, ref time);
+            if (isSet == 0)
+            {
+                data += "'" + enable + "'" + ",";
+                data += "'" + type + "'" + ",";
+                data += "'" + time + "'";
+                data += "]";
+                return data;
+            }
+            else
+            {
+                return "";
+            }
+        }
         //fir界面方法
+        public int set_fir_enable(int enable)
+        {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            if (ins != null)
+            {
+                int isSet = audioaef_net_dll.net_audioaef_set_fir_enable(ins, name, enable);
+                if (isSet == 0)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            return 0;
+        }
+
+        public string get_fir_options()
+        {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            string data = "[";
+            string[] options = new string[20];
+
+            if (ins != null)
+            {
+                int isGet = audioaef_net_dll.net_audioaef_get_fir_type_option(ins, ref options);
+
+                if (isGet == 0)
+                {
+                    for (int i = 0; i < options.Length; i++)
+                    {
+                        if (i == options.Length - 1)
+                        {
+                            data += "'" + options[i] + "'";
+                        }
+                        data += "'" + options[i] + "'" + ",";
+                    }
+                    data += "]";
+
+                    return data;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            return "";
+        }
+
+        public string get_fir()
+        {
+            IntPtr ins = alluse_data.create_net_create;
+            string name = modName;
+            string type = "";
+            int enable = 0;
+            string data = "[";
+            int isSet = audioaef_net_dll.net_audioaef_get_fir(ins, name, ref enable, ref type);
+            if (isSet == 0)
+            {
+                data += "'" + enable + "'" + ",";
+                data += "'" + type + "'";
+                data += "]";
+                return data;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+
+
+
         private void out_form_FormClosing(object sender, FormClosingEventArgs e)
         {
            

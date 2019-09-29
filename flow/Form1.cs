@@ -283,21 +283,21 @@ namespace flow
             }
             if (item == "ldeq")
             {
-                //int enable = 0;
-                //string type = "";
-                //float time = 0;
-                //int isSet = audioaef_net_dll.net_audioaef_get_loudeq(ins, modname, ref enable, ref type, ref time);
-                //if (isSet == 0)
-                //{
-                //    string ret_text = modname + " ";
-                //    if (enable == 1) { ret_text += "NO "; } else { ret_text += "OFF "; };
-                //    ret_text += type + " "+time; 
-                //    return ret_text;
-                //}
-                //else
-                //{
-                //    return "";
-                //}
+                int enable = 0;
+                string type = "";
+                float time = 0;
+                int isSet = audioaef_net_dll.net_audioaef_get_loudeq(ins, modname,ref enable, ref type, ref time);
+                if (isSet == 0)
+                {
+                    string ret_text = modname + " ";
+                    if (enable == 1) { ret_text += "NO "; } else { ret_text += "OFF "; };
+                    ret_text += type + " " + time;
+                    return ret_text;
+                }
+                else
+                {
+                    return "";
+                }
             }
             if (item == "xover")
             {
