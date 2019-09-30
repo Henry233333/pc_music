@@ -61,3 +61,4 @@ D:\work\pc_music\flow\obj\Debug\flow.Form1.resources
 D:\work\pc_music\flow\obj\Debug\flow.out_form.resources
 D:\work\pc_music\flow\obj\Debug\flow.Properties.Resources.resources
 D:\work\pc_music\flow\obj\Debug\flow.csproj.GenerateResource.Cache
+D:\work\pc_music\flow\obj\Debug\flow.csprojResolveAssemblyReference.cache

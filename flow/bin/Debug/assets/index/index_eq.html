@@ -9,8 +9,14 @@
     <script src="js/bootstrap-slider.js"></script>
     <link rel="stylesheet" href="css/bootstrap-slider.css">
     <link rel="stylesheet" href="css/sliders.css"/>
-    <script src="js/peq_draw.js"></script>
+
     <style>
+        body{
+            background-color: black;
+        }
+        label{
+            color: white;
+        }
         .out_eq_main {
             display: flex;
             flex-direction: row;
@@ -18,12 +24,7 @@
             padding-left: 30px;
             width: 100%;
         }
-        body{
-            background-color: black;
-        }
-        label{
-            color: white;
-        }
+
         #eq_canvas {
             position: absolute;
             top: 50px;
@@ -83,8 +84,8 @@
             transform: translateX(-50%) translateY(-50%);
             -ms-transform: translateX(-50%) translateY(-50%);
             border-radius: 50px;
-            -ms-user-select:none;
-            user-select:none;
+            -ms-user-select: none;
+            user-select: none;
             text-align: center;
             line-height: 30px;
         }
@@ -137,7 +138,8 @@
             left: 400px;
 
         }
-        .eq_button{
+
+        .eq_button {
             width: 60px;
             height: 30px;
             border: none;
@@ -146,7 +148,8 @@
             background-color: rgba(156, 156, 156, 0.65);
             color: white;
         }
-        .mod{
+
+        .mod {
             width: 100%;
             height: 100%;
             opacity: 0.5;
@@ -162,22 +165,26 @@
         window.onload = function () {
             window.external.eq_creates();
         };
+
         function resetPage() {
+            window.external.distory_creates();
             window.location.reload();
         }
+
         function bypassPage() {
-            if($("#mod_status").val()==0){
-                $(".mod").css({"display":"block"});
+            if ($("#mod_status").val() == 0) {
+                $(".mod").css({"display": "block"});
                 $("#mod_status").val(1)
-            }else{
-                $(".mod").css({"display":"none"});
+            } else {
+                $(".mod").css({"display": "none"});
                 $("#mod_status").val(0)
             }
         }
     </script>
 </head>
 <body>
-<button style="z-index: 1000;position: absolute;top: 28px;left: 30px" class="eq_button" onclick="bypassPage()">Bypass</button>
+<button style="z-index: 1000;position: absolute;top: 28px;left: 30px" class="eq_button" onclick="bypassPage()">Bypass
+</button>
 <div class="mod">
     <input type="hidden" id="mod_status" value="0">
 </div>
@@ -249,7 +256,8 @@
             <!--enable and types-->
             <span style="height: 30px;position: relative;left: 0px;top: 20px">
                 <label class="input_label">off</label>
-                <input type="checkbox" class="check_style" onchange="change_enable(this)" checked="checked" id="EQ_enable">
+                <input type="checkbox" class="check_style" onchange="change_enable(this)" checked="checked"
+                       id="EQ_enable">
                 <label for="EQ_enable" class="green"></label>
                 <label class="input_label">on</label>
                 <label class="input_label" style="margin-left: 30px" id="eq_title">EQ_1</label>
@@ -263,7 +271,7 @@
                     <option value="6">HP2</option>
                     <option value="7">LS2</option>
                     <option value="8">HS2</option>
-                    <option value="9" selected="selected" >PEAK</option>
+                    <option value="9" selected="selected">PEAK</option>
                     <option value="10">NOTCH</option>
                     <option value="11">AP2</option>
                     <option value="12">BP2</option>
@@ -271,46 +279,120 @@
                 </select>
             </span>
             <script>
-                var item_status_1 = {"enable":1,"filter_type":9};
-                var item_status_2 = {"enable":1,"filter_type":9};
-                var item_status_3 = {"enable":1,"filter_type":9};
-                var item_status_4 = {"enable":1,"filter_type":9};
-                var item_status_5 = {"enable":1,"filter_type":9};
-                var item_status_6 = {"enable":1,"filter_type":9};
-                var item_status_7 = {"enable":1,"filter_type":9};
-                var item_status_8 = {"enable":1,"filter_type":9};
+                var item_status_1 = {"enable": 1, "filter_type": 9};
+                var item_status_2 = {"enable": 1, "filter_type": 9};
+                var item_status_3 = {"enable": 1, "filter_type": 9};
+                var item_status_4 = {"enable": 1, "filter_type": 9};
+                var item_status_5 = {"enable": 1, "filter_type": 9};
+                var item_status_6 = {"enable": 1, "filter_type": 9};
+                var item_status_7 = {"enable": 1, "filter_type": 9};
+                var item_status_8 = {"enable": 1, "filter_type": 9};
+
                 function change_enable(e) {
                     if ($(e).is(":checked")) {
-                        if(now_eq_item_id==0){item_status_1.enable = 1};
-                        if(now_eq_item_id==1){item_status_2.enable = 1};
-                        if(now_eq_item_id==2){item_status_3.enable = 1};
-                        if(now_eq_item_id==3){item_status_4.enable = 1};
-                        if(now_eq_item_id==4){item_status_5.enable = 1};
-                        if(now_eq_item_id==5){item_status_6.enable = 1};
-                        if(now_eq_item_id==6){item_status_7.enable = 1};
-                        if(now_eq_item_id==7){item_status_8.enable = 1};
+                        if (now_eq_item_id == 0) {
+                            item_status_1.enable = 1
+                        }
+                        ;
+                        if (now_eq_item_id == 1) {
+                            item_status_2.enable = 1
+                        }
+                        ;
+                        if (now_eq_item_id == 2) {
+                            item_status_3.enable = 1
+                        }
+                        ;
+                        if (now_eq_item_id == 3) {
+                            item_status_4.enable = 1
+                        }
+                        ;
+                        if (now_eq_item_id == 4) {
+                            item_status_5.enable = 1
+                        }
+                        ;
+                        if (now_eq_item_id == 5) {
+                            item_status_6.enable = 1
+                        }
+                        ;
+                        if (now_eq_item_id == 6) {
+                            item_status_7.enable = 1
+                        }
+                        ;
+                        if (now_eq_item_id == 7) {
+                            item_status_8.enable = 1
+                        }
+                        ;
                     } else {
-                        if(now_eq_item_id==0){item_status_1.enable = 0};
-                        if(now_eq_item_id==1){item_status_2.enable = 0};
-                        if(now_eq_item_id==2){item_status_3.enable = 0};
-                        if(now_eq_item_id==3){item_status_4.enable = 0};
-                        if(now_eq_item_id==4){item_status_5.enable = 0};
-                        if(now_eq_item_id==5){item_status_6.enable = 0};
-                        if(now_eq_item_id==6){item_status_7.enable = 0};
-                        if(now_eq_item_id==7){item_status_8.enable = 0};
+                        if (now_eq_item_id == 0) {
+                            item_status_1.enable = 0
+                        }
+                        ;
+                        if (now_eq_item_id == 1) {
+                            item_status_2.enable = 0
+                        }
+                        ;
+                        if (now_eq_item_id == 2) {
+                            item_status_3.enable = 0
+                        }
+                        ;
+                        if (now_eq_item_id == 3) {
+                            item_status_4.enable = 0
+                        }
+                        ;
+                        if (now_eq_item_id == 4) {
+                            item_status_5.enable = 0
+                        }
+                        ;
+                        if (now_eq_item_id == 5) {
+                            item_status_6.enable = 0
+                        }
+                        ;
+                        if (now_eq_item_id == 6) {
+                            item_status_7.enable = 0
+                        }
+                        ;
+                        if (now_eq_item_id == 7) {
+                            item_status_8.enable = 0
+                        }
+                        ;
                     }
-
+                    change_now_line(now_eq_item_id);
                 }
-                function change_filter_type(e) {
-                    if(now_eq_item_id==0){item_status_1.filter_type = e.value};
-                    if(now_eq_item_id==1){item_status_2.filter_type = e.value};
-                    if(now_eq_item_id==2){item_status_3.filter_type = e.value};
-                    if(now_eq_item_id==3){item_status_4.filter_type = e.value};
-                    if(now_eq_item_id==4){item_status_5.filter_type = e.value};
-                    if(now_eq_item_id==5){item_status_6.filter_type = e.value};
-                    if(now_eq_item_id==6){item_status_7.filter_type = e.value};
-                    if(now_eq_item_id==7){item_status_8.filter_type = e.value};
 
+                function change_filter_type(e) {
+                    if (now_eq_item_id == 0) {
+                        item_status_1.filter_type = e.value
+                    }
+                    ;
+                    if (now_eq_item_id == 1) {
+                        item_status_2.filter_type = e.value
+                    }
+                    ;
+                    if (now_eq_item_id == 2) {
+                        item_status_3.filter_type = e.value
+                    }
+                    ;
+                    if (now_eq_item_id == 3) {
+                        item_status_4.filter_type = e.value
+                    }
+                    ;
+                    if (now_eq_item_id == 4) {
+                        item_status_5.filter_type = e.value
+                    }
+                    ;
+                    if (now_eq_item_id == 5) {
+                        item_status_6.filter_type = e.value
+                    }
+                    ;
+                    if (now_eq_item_id == 6) {
+                        item_status_7.filter_type = e.value
+                    }
+                    ;
+                    if (now_eq_item_id == 7) {
+                        item_status_8.filter_type = e.value
+                    }
+                    ;
+                    change_now_line(now_eq_item_id);
                 }
 
             </script>
@@ -346,31 +428,36 @@
                 get_form_eq_data(context);
                 get_node_line(now_eq_item_id, context);
 
-                if(now_eq_item_id == 0){
+                if (now_eq_item_id == 0) {
                     var eq_id = 'eq_item_1';
-                }
-                else if(now_eq_item_id==1){
+                } else if (now_eq_item_id == 1) {
                     var eq_id = 'eq_item_2';
-                }
-                else if(now_eq_item_id==2){
+                } else if (now_eq_item_id == 2) {
                     var eq_id = 'eq_item_3';
-                }
-                else if(now_eq_item_id==3){
+                } else if (now_eq_item_id == 3) {
                     var eq_id = 'eq_item_4';
-                }
-                else if(now_eq_item_id==4){
+                } else if (now_eq_item_id == 4) {
                     var eq_id = 'eq_item_5';
-                }
-                else if(now_eq_item_id==5){
+                } else if (now_eq_item_id == 5) {
                     var eq_id = 'eq_item_6';
-                }
-                else if(now_eq_item_id==6){
+                } else if (now_eq_item_id == 6) {
                     var eq_id = 'eq_item_7';
-                }
-                else if(now_eq_item_id==7){
+                } else if (now_eq_item_id == 7) {
                     var eq_id = 'eq_item_8';
                 }
                 move_item(eq_id, freq, gain);
+            }
+
+            function change_now_line(id) {
+                var gain = $("#eq_gain_slider_num").val();
+                var freq = $("#eq_freq_slider_num").val();
+                var q = $("#eq_q_slider_num").val();
+                var x = canvas.width;
+                var y = canvas.height;
+                context.clearRect(0, -y, x, 2 * y);
+                set_node_data(id, gain, q, freq);
+                get_form_eq_data(context);
+                get_node_line(id, context);
             }
 
             function move_item(id, freq, gain) {
@@ -386,11 +473,9 @@
                 var id = $(this).attr("id");
                 if (id == 'eq_gain_slider_num') {
                     slider.setValue(this.value);
-                }
-                else if (id == 'eq_freq_slider_num') {
+                } else if (id == 'eq_freq_slider_num') {
                     slider1.setValue(this.value);
-                }
-                else if (id == 'eq_q_slider_num') {
+                } else if (id == 'eq_q_slider_num') {
                     slider5.setValue(this.value);
                 }
                 var gain = $("#eq_gain_slider_num").val();
@@ -448,9 +533,8 @@
     var context = canvas.getContext('2d');
 
     $(function () {
-
         context.translate(0, 240);
-        //context.clearRect(0, -y, x, 2*y);
+
     });
 
     //get_eq_all_line
@@ -473,42 +557,133 @@
     function set_node_data(id, gain, q, freq) {
         var enable = 0;
         var filter_type = 0;
-        if(id==0){enable = item_status_1.enable,filter_type = item_status_1.filter_type};
-        if(id==1){enable = item_status_2.enable,filter_type = item_status_2.filter_type};
-        if(id==2){enable = item_status_3.enable,filter_type = item_status_3.filter_type};
-        if(id==3){enable = item_status_4.enable,filter_type = item_status_4.filter_type};
-        if(id==4){enable = item_status_5.enable,filter_type = item_status_5.filter_type};
-        if(id==5){enable = item_status_6.enable,filter_type = item_status_6.filter_type};
-        if(id==6){enable = item_status_7.enable,filter_type = item_status_7.filter_type};
-        if(id==7){enable = item_status_8.enable,filter_type = item_status_8.filter_type};
+        if (id == 0) {
+            enable = item_status_1.enable, filter_type = item_status_1.filter_type
+        }
+        ;
+        if (id == 1) {
+            enable = item_status_2.enable, filter_type = item_status_2.filter_type
+        }
+        ;
+        if (id == 2) {
+            enable = item_status_3.enable, filter_type = item_status_3.filter_type
+        }
+        ;
+        if (id == 3) {
+            enable = item_status_4.enable, filter_type = item_status_4.filter_type
+        }
+        ;
+        if (id == 4) {
+            enable = item_status_5.enable, filter_type = item_status_5.filter_type
+        }
+        ;
+        if (id == 5) {
+            enable = item_status_6.enable, filter_type = item_status_6.filter_type
+        }
+        ;
+        if (id == 6) {
+            enable = item_status_7.enable, filter_type = item_status_7.filter_type
+        }
+        ;
+        if (id == 7) {
+            enable = item_status_8.enable, filter_type = item_status_8.filter_type
+        }
+        ;
 
-        window.external.set_node_dataY(id,enable, filter_type, gain, q, freq);
+        window.external.set_node_dataY(id, enable, filter_type, gain, q, freq);
     }
 
+    function load_data() {
+        for (var i = 0; i < 8; i++) {
+            var ss = window.external.get_load_data(i);
+            if(ss==""||ss==null){
+                return;
+            }
+            var data2 = eval("(" + ss + ")");
+
+            if (i == 0) {
+                item_status_1.enable = data2[0], item_status_1.filter_type = data2[1]
+            }
+            ;
+            if (i == 1) {
+                item_status_2.enable = data2[0], item_status_2.filter_type = data2[1]
+            }
+            ;
+            if (i == 2) {
+                item_status_3.enable = data2[0], item_status_3.filter_type = data2[1]
+            }
+            ;
+            if (i == 3) {
+                item_status_4.enable = data2[0], item_status_4.filter_type = data2[1]
+            }
+            ;
+            if (i == 4) {
+                item_status_5.enable = data2[0], item_status_5.filter_type = data2[1]
+            }
+            ;
+            if (i == 5) {
+                item_status_6.enable = data2[0], item_status_6.filter_type = data2[1]
+            }
+            ;
+            if (i == 6) {
+                item_status_7.enable = data2[0], item_status_7.filter_type = data2[1]
+            }
+            ;
+            if (i == 7) {
+                item_status_8.enable = data2[0], item_status_8.filter_type = data2[1]
+            }
+            ;
+            var gain = data2[2];
+            var q = data2[3];
+            var freq = data2[4];
+            if (i == 0) {
+                var eq_id = 'eq_item_1';
+            } else if (i == 1) {
+                var eq_id = 'eq_item_2';
+            } else if (i == 2) {
+                var eq_id = 'eq_item_3';
+            } else if (i == 3) {
+                var eq_id = 'eq_item_4';
+            } else if (i == 4) {
+                var eq_id = 'eq_item_5';
+            } else if (i == 5) {
+                var eq_id = 'eq_item_6';
+            } else if (i == 6) {
+                var eq_id = 'eq_item_7';
+            } else if (i == 7) {
+                var eq_id = 'eq_item_8';
+            }
+            move_item(eq_id, freq, gain);
+            set_node_data(i, gain, q, freq);
+        }
+        var x = canvas.width;
+        var y = canvas.height;
+        context.clearRect(0, -y, x, 2 * y);
+        get_form_eq_data(context);
+    }
+
+    $(function () {
+        setTimeout(function () {
+            //load_data();
+        },100);
+    });
     function get_node_line(id, context) {
         context.lineWidth = 1;
         if (id == 0) {
             context.strokeStyle = 'rgba(255, 9, 1, 0.69)';
-        }
-        else if (id == 1) {
+        } else if (id == 1) {
             context.strokeStyle = 'rgba(255, 77, 7, 0.69)';
-        }
-        else if (id == 2) {
+        } else if (id == 2) {
             context.strokeStyle = 'rgba(255, 230, 0, 0.69)';
-        }
-        else if (id == 3) {
+        } else if (id == 3) {
             context.strokeStyle = 'rgba(48, 255, 2, 0.69)';
-        }
-        else if (id == 4) {
+        } else if (id == 4) {
             context.strokeStyle = 'rgba(0, 255, 232, 0.69)';
-        }
-        else if (id == 5) {
+        } else if (id == 5) {
             context.strokeStyle = 'rgba(0, 104, 255, 0.69)';
-        }
-        else if (id == 6) {
+        } else if (id == 6) {
             context.strokeStyle = 'rgba(206, 11, 255, 0.69)';
-        }
-        else if (id == 7) {
+        } else if (id == 7) {
             context.strokeStyle = 'rgba(255, 0, 120, 0.69)';
         }
 
