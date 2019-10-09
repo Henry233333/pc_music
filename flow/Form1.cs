@@ -121,7 +121,9 @@ namespace flow
             string newS = "";
             for (int i = 0; i < ContentLines.Length; i++)
             {
-                newS += new System.Text.RegularExpressions.Regex("[\\s]+").Replace(ContentLines[i], " ")+"\r\n";
+               string ss = new System.Text.RegularExpressions.Regex("[\\s]+").Replace(ContentLines[i], " ");
+               string s2 = ss.Replace(" ]","]");
+               newS += s2 + "\r\n";
             }
             
             //生成flow.config

@@ -3,16 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a7d9c8e0-a547-46a6-bcb4-14207d3c1520" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../../../flow.v11.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../flow.v11.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../audioaef_net_dll.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../audioaef_net_dll.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../flow.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../libAudioSmartFlow.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../libAudioSmartFlow.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../libAudioSmartFlow.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../../libAudioSmartFlow.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../obj/Debug/flow.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../out_form.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../../out_form.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +102,7 @@
       <workItem from="1569721333007" duration="4119000" />
       <workItem from="1569806171891" duration="3206000" />
       <workItem from="1570498224423" duration="3458000" />
-      <workItem from="1570584455534" duration="1955000" />
+      <workItem from="1570584455534" duration="3160000" />
     </task>
     <task id="LOCAL-00001" summary="items types enable">
       <created>1568613009490</created>
@@ -204,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569838184860</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="10/9 flow">
+      <created>1570586456122</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1570586456122</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,6 +234,7 @@
     <MESSAGE value="9/29 ldeq" />
     <MESSAGE value="9/29 index_eq" />
     <MESSAGE value="9/30 index_eq" />
-    <option name="LAST_COMMIT_MESSAGE" value="9/30 index_eq" />
+    <MESSAGE value="10/9 flow" />
+    <option name="LAST_COMMIT_MESSAGE" value="10/9 flow" />
   </component>
 </project>
