@@ -563,7 +563,7 @@ namespace flow
             Console.WriteLine(ins);
             string name = modName;
             string data = "[";
-            String  options = "";
+            string [] options = new string[200];
             
             if (ins != null)
             {   

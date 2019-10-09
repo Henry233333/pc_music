@@ -332,7 +332,8 @@
             }
             flow_text += "\r\n";
             //添加读取结束标识
-            flow_text += "#sub-channel out";
+            var end_config_text = window.external.get_config_end_text();
+            flow_text += end_config_text;
 
             var save_flow = window.external.saveFlow(flow_text);
             if (save_flow == 1) {

@@ -239,7 +239,7 @@ namespace flow
         public static extern int net_audioaef_get_geq_bqf(IntPtr ins,string name, int bqfID, float  gain, float  freq);
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_get_loudeq_option")]
-        public static extern int net_audioaef_get_loudeq_option(IntPtr ins, ref String optionlist);
+        public static extern int net_audioaef_get_loudeq_option(IntPtr ins, ref string [] optionlist);
 
         [DllImport("libAudioSmartFlow.dll", CallingConvention = CallingConvention.Cdecl, EntryPoint = "net_audioaef_set_loudeq_type")]
         public static extern int net_audioaef_set_loudeq_type(IntPtr ins, string name, string type);
