@@ -46,6 +46,10 @@ namespace flow
             return 0;
         }
         public static List<string> flow_config_list = new List<string>();
+        private static string config_end_text = "\r\n" + "";
+        public static string flow_config_text_end() {
+            return config_end_text;
+        }
         public static string flow_item()
         {
             
@@ -53,9 +57,19 @@ namespace flow
             string text = "[";
            
             for (int i = 0; i < flow_config_list.Count; i++)
-            {
-                
+            {               
+                if (flow_config_list[i].Substring(0, 1) == "@")
+                { 
+                    config_end_text += flow_config_list[i]+"\r\n";
+                        continue;
+                    }
                 string[] sArray = flow_config_list[i].Split(',');
+                if (sArray[1] == "COLLECTION")
+                {
+
+                    config_end_text += flow_config_list[i] + "\r\n"; ;
+                    continue;
+                }
                 string loc_x = "";
                 string loc_y = "";
                
@@ -79,8 +93,16 @@ namespace flow
             string text = "[";
             for (int i = 0; i < flow_config_list.Count; i++)
             {
-                string[] sArray = flow_config_list[i].Split(',');
 
+                if (flow_config_list[i].Substring(0, 1) == "@")
+                {
+                    continue;
+                }                       
+                string[] sArray = flow_config_list[i].Split(',');
+                if (sArray[1] == "COLLECTION")
+                {
+                    continue;
+                }
                 
                 string to_list_s = sArray[3];
                 string to_list_s1 = to_list_s.Replace("[", "");

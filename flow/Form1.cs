@@ -169,8 +169,12 @@ namespace flow
                     if (last == "0") {
                         parms_text += title_name[0] + " ON system-in-left" + "\r\n";
                     }
-                    else if (last == "1") {
+                    else if (last == "1")
+                    {
                         parms_text += title_name[0] + " ON system-in-right" + "\r\n";
+                    }
+                    else {
+                        parms_text += title_name[0] + " ON" + "\r\n";
                     }
                 }
                 else if (ss == "output")
@@ -184,6 +188,10 @@ namespace flow
                     else if (last == "1")
                     {
                         parms_text += title_name[0] + " ON system-out-right" + "\r\n";
+                        parms_text += "\r\n";
+                    }
+                    else {
+                        parms_text += title_name[0] + " ON" + "\r\n";
                         parms_text += "\r\n";
                     }
                 }
@@ -388,10 +396,10 @@ namespace flow
             }
         }
 
-
-
-
-
+        public string get_config_end_text() {
+            string endText = alluse_data.flow_config_text_end();
+            return endText;
+        }
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -439,10 +447,7 @@ namespace flow
             String ls_input = sr.ReadToEnd().TrimStart();
             if (!string.IsNullOrEmpty(ls_input)) {
                 
-                Regex rg = new Regex("(?<=())[.\\s\\S]*?(?=(#sub-channel out))", RegexOptions.Multiline | RegexOptions.Singleline);
-                string ss = rg.Match(ls_input).Value;
-               
-                string[] ContentLines = ss.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                string[] ContentLines = ls_input.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < ContentLines.Length; i++)
                 {
                     if (ContentLines[i].Substring(0,1) == "#") {
